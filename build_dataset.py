@@ -30,9 +30,9 @@ class camera_man:
 """
 
 device_paths = glob.glob('/dev/video*')
-
+print(device_paths)
 # Connect to each camera initially
-camera_a_path = device_paths[0]
-camera_a_camera = cv2.VideoCapture(camera_a_path)
-camera_b_path = device_paths[1]
-camera_b_camera = cv2.VideoCapture(camera_b_path)
+#camera_a_path = device_paths[0]
+#camera_a_camera = cv2.VideoCapture(camera_a_path)
+#camera_b_path = device_paths[1]
+#camera_b_camera = cv2.VideoCapture(camera_b_path)
