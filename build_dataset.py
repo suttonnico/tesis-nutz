@@ -87,6 +87,7 @@ trash, img_BW4 = cv2.threshold(img_gray4, th, 255, cv2.THRESH_BINARY)
 img_gray6 = cv2.cvtColor(img6, cv2.COLOR_BGR2GRAY)
 trash, img_BW6 = cv2.threshold(img_gray6, th, 255, cv2.THRESH_BINARY)
 i2c.go()
+i = 100
 while 1:
     time.sleep(0.1)
     s0, img0 = camera_0.read()
@@ -109,5 +110,14 @@ while 1:
     thr = 2384035
     if diff0.sum() > thr or diff2.sum() > thr or diff4.sum() > thr or diff6.sum() > thr:
         print(diff0.sum())
-        i2c.stop()
+        #i2c.stop()
+        i2c.openA1()
+        time.sleep(0.4)
+        cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
+        cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
+        cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
+        cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
+        i2c.closeA1()
+        i = i+1
+
 exit()
