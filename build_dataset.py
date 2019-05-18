@@ -32,18 +32,18 @@ class camera_man:
 
 """
 
-camera_0 = cv2.VideoCapture(1)
+camera_0 = cv2.VideoCapture(0)
 camera_0.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
 camera_0.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
-camera_2 = cv2.VideoCapture(3)
+camera_2 = cv2.VideoCapture(2)
 camera_2.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
 camera_2.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
 
-camera_4 = cv2.VideoCapture(5)
+camera_4 = cv2.VideoCapture(4)
 camera_4.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
 camera_4.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
 
-camera_6 = cv2.VideoCapture(7)
+camera_6 = cv2.VideoCapture(6)
 camera_6.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
 camera_6.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
 
