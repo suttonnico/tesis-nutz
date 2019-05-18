@@ -46,28 +46,25 @@ camera_AR6 = cv2.VideoCapture(camera_AR_path)
 
 s, img_0 = camera_AR0.read()
 s, img_2 = camera_AR2.read()
-s, img_4 = camera_AR0.read()
-s, img_6 = camera_AR0.read()
+s, img_4 = camera_AR4.read()
+s, img_6 = camera_AR6.read()
 
-cv2.imwrite('data/test_0.png', img_0)
-cv2.imwrite('data/test_0.png', img_2)
-cv2.imwrite('data/test_0.png', img_4)
-cv2.imwrite('data/test_0.png', img_6)
-time.sleep(0.1)
-
-
-s, img_0 = camera_AR0.read()
-s, img_2 = camera_AR2.read()
-s, img_4 = camera_AR0.read()
-s, img_6 = camera_AR0.read()
 
 time.sleep(0.1)
 
 
 s, img_0 = camera_AR0.read()
 s, img_2 = camera_AR2.read()
-s, img_4 = camera_AR0.read()
-s, img_6 = camera_AR0.read()
+s, img_4 = camera_AR4.read()
+s, img_6 = camera_AR6.read()
+
+time.sleep(0.1)
+
+
+s, img_0 = camera_AR0.read()
+s, img_2 = camera_AR2.read()
+s, img_4 = camera_AR4.read()
+s, img_6 = camera_AR6.read()
 
 cv2.imwrite('data/test_0.png', img_0)
 cv2.imwrite('data/test_2.png', img_2)
