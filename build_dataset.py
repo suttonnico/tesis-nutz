@@ -32,13 +32,17 @@ class camera_man:
 
 camera_0 = cv2.VideoCapture(0)
 s0, img_0 = camera_0.read()
-cv2.imwrite('data/test_0.png', img_0)
+cv2.imwrite('data/test2_0.png', img_0)
 camera_2 = cv2.VideoCapture(2)
 s2, img_2 = camera_2.read()
-cv2.imwrite('data/test_2.png', img_0)
-
+cv2.imwrite('data/test2_2.png', img_2)
 camera_4 = cv2.VideoCapture(4)
+s4, img_4 = camera_4.read()
+cv2.imwrite('data/test2_4.png', img_4)
 camera_6 = cv2.VideoCapture(6)
+s6, img_6 = camera_6.read()
+cv2.imwrite('data/test2_6.png', img_6)
+
 exit()
 device_paths = glob.glob('/dev/video*')
 # Connect to each camera initially
