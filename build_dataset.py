@@ -34,23 +34,25 @@ camera_0 = cv2.VideoCapture(0)
 camera_2 = cv2.VideoCapture(2)
 camera_4 = cv2.VideoCapture(4)
 camera_6 = cv2.VideoCapture(6)
-"""
-s0, img_0 = camera_0.read()
-s2, img_2 = camera_2.read()
 
 s0, img_0 = camera_0.read()
 s2, img_2 = camera_2.read()
-
-s0, img_0 = camera_0.read()
-s2, img_2 = camera_2.read()
-
-s0, img_0 = camera_0.read()
-s2, img_2 = camera_2.read()
-"""
-
 s4, img_4 = camera_4.read()
+s6, img_6 = camera_6.read()
 time.sleep(0.5)
+
+s0, img_0 = camera_0.read()
+s2, img_2 = camera_2.read()
 s4, img_4 = camera_4.read()
+s6, img_6 = camera_6.read()
+time.sleep(0.5)
+
+s0, img_0 = camera_0.read()
+s2, img_2 = camera_2.read()
+s4, img_4 = camera_4.read()
+s6, img_6 = camera_6.read()
+time.sleep(0.5)
+
 #s6, img_6 = camera_6.read()
 #time.sleep(0.1)
 #s0, img_0 = camera_0.read()
