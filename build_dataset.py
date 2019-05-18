@@ -86,7 +86,7 @@ trash, img_BW4 = cv2.threshold(img_gray4, th, 255, cv2.THRESH_BINARY)
 
 img_gray6 = cv2.cvtColor(img6, cv2.COLOR_BGR2GRAY)
 trash, img_BW6 = cv2.threshold(img_gray6, th, 255, cv2.THRESH_BINARY)
-
+i2c.go()
 while 1:
     time.sleep(0.1)
     s0, img0 = camera_0.read()
