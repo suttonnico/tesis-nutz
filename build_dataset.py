@@ -30,9 +30,28 @@ class camera_man:
 """
 
 device_paths = glob.glob('/dev/video*')
-print(device_paths)
 # Connect to each camera initially
-#camera_a_path = device_paths[0]
-#camera_a_camera = cv2.VideoCapture(camera_a_path)
-#camera_b_path = device_paths[1]
-#camera_b_camera = cv2.VideoCapture(camera_b_path)
+camera_AR_path = '/dev/video0'
+camera_AR0 = cv2.VideoCapture(camera_AR_path)
+
+camera_AR_path = '/dev/video1'
+camera_AR1= cv2.VideoCapture(camera_AR_path)
+
+camera_AR_path = '/dev/video2'
+camera_AR2 = cv2.VideoCapture(camera_AR_path)
+
+camera_AR_path = '/dev/video3'
+camera_AR3 = cv2.VideoCapture(camera_AR_path)
+
+camera_AR_path = '/dev/video4'
+camera_AR4 = cv2.VideoCapture(camera_AR_path)
+
+camera_AR_path = '/dev/video5'
+camera_AR5 = cv2.VideoCapture(camera_AR_path)
+
+camera_AR_path = '/dev/video6'
+camera_AR6 = cv2.VideoCapture(camera_AR_path)
+
+camera_AR_path = '/dev/video7'
+camera_AR7 = cv2.VideoCapture(camera_AR_path)
+
