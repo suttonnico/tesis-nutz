@@ -45,6 +45,7 @@ camera_6 = cv2.VideoCapture(6)
 camera_6.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
 camera_6.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
 
+time.sleep(20)
 s0, img_0 = camera_0.read()
 s2, img_2 = camera_2.read()
 s4, img_4 = camera_4.read()
