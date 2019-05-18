@@ -110,7 +110,7 @@ while 1:
     thr = 3384035
     if diff0.sum() > thr or diff2.sum() > thr or diff4.sum() > thr or diff6.sum() > thr:
         print(diff0.sum())
-        #i2c.stop()
+        i2c.stop()
         i2c.openA1()
         time.sleep(0.4)
         cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
@@ -119,6 +119,7 @@ while 1:
         cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
         i2c.closeA1()
         i = i+1
-        time.sleep(0.4)
+        time.sleep(1)
+        i2c.go()
 
 exit()
