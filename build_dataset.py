@@ -31,9 +31,12 @@ class camera_man:
 """
 
 camera_0 = cv2.VideoCapture(0)
-s, img_0 = camera_0.read()
+s0, img_0 = camera_0.read()
 cv2.imwrite('data/test_0.png', img_0)
 camera_2 = cv2.VideoCapture(2)
+s2, img_2 = camera_2.read()
+cv2.imwrite('data/test_2.png', img_0)
+
 camera_4 = cv2.VideoCapture(4)
 camera_6 = cv2.VideoCapture(6)
 exit()
