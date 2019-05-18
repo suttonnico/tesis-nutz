@@ -31,16 +31,23 @@ class camera_man:
 """
 
 camera_0 = cv2.VideoCapture(0)
-s0, img_0 = camera_0.read()
-cv2.imwrite('data/test2_0.jpg', img_0)
 camera_2 = cv2.VideoCapture(2)
-s2, img_2 = camera_2.read()
-cv2.imwrite('data/test2_2.jpg', img_2)
 camera_4 = cv2.VideoCapture(4)
-s4, img_4 = camera_4.read()
-cv2.imwrite('data/test2_4.jpg', img_4)
+
 camera_6 = cv2.VideoCapture(6)
+
+s0, img_0 = camera_0.read()
+time.sleep(0.1)
+s2, img_2 = camera_2.read()
+time.sleep(0.1)
+s4, img_4 = camera_4.read()
+time.sleep(0.1)
 s6, img_6 = camera_6.read()
+
+cv2.imwrite('data/test2_0.jpg', img_0)
+cv2.imwrite('data/test2_2.jpg', img_2)
+cv2.imwrite('data/test2_4.jpg', img_4)
+
 cv2.imwrite('data/test2_6.jpg', img_6)
 
 exit()
