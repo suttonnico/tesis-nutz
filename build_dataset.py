@@ -1,6 +1,7 @@
 import cv2
 import i2c_module as i2c
 import glob
+import time
 i2c.stop()
 i2c.closeA1()
 i2c.closeA2()
@@ -34,24 +35,34 @@ device_paths = glob.glob('/dev/video*')
 camera_AR_path = '/dev/video0'
 camera_AR0 = cv2.VideoCapture(camera_AR_path)
 
-camera_AR_path = '/dev/video1'
-camera_AR1= cv2.VideoCapture(camera_AR_path)
-
 camera_AR_path = '/dev/video2'
 camera_AR2 = cv2.VideoCapture(camera_AR_path)
-
-camera_AR_path = '/dev/video3'
-camera_AR3 = cv2.VideoCapture(camera_AR_path)
 
 camera_AR_path = '/dev/video4'
 camera_AR4 = cv2.VideoCapture(camera_AR_path)
 
-camera_AR_path = '/dev/video5'
-camera_AR5 = cv2.VideoCapture(camera_AR_path)
-
 camera_AR_path = '/dev/video6'
 camera_AR6 = cv2.VideoCapture(camera_AR_path)
 
-camera_AR_path = '/dev/video7'
-camera_AR7 = cv2.VideoCapture(camera_AR_path)
+s, img_0 = camera_AR0.read()
+s, img_2 = camera_AR2.read()
+s, img_4 = camera_AR0.read()
+s, img_6 = camera_AR0.read()
 
+cv2.imwrite('data/test_0.png', img_0)
+cv2.imwrite('data/test_0.png', img_2)
+cv2.imwrite('data/test_0.png', img_4)
+cv2.imwrite('data/test_0.png', img_6)
+
+time.sleep(1)
+
+
+s, img_0 = camera_AR0.read()
+s, img_2 = camera_AR2.read()
+s, img_4 = camera_AR0.read()
+s, img_6 = camera_AR0.read()
+
+cv2.imwrite('data/test_0.png', img_0)
+cv2.imwrite('data/test_0.png', img_2)
+cv2.imwrite('data/test_0.png', img_4)
+cv2.imwrite('data/test_0.png', img_6)
