@@ -3,6 +3,8 @@ import i2c_module as i2c
 import glob
 import time
 i2c.stop()
+i2c.openA1()
+time.sleep(0.4)
 i2c.closeA1()
 i2c.closeA2()
 
@@ -45,78 +47,72 @@ camera_6 = cv2.VideoCapture(6)
 camera_6.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
 camera_6.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
 
-time.sleep(20)
+time.sleep(2)
 s0, img_0 = camera_0.read()
 s2, img_2 = camera_2.read()
 s4, img_4 = camera_4.read()
 s6, img_6 = camera_6.read()
-time.sleep(0.5)
 
-s0, img_0 = camera_0.read()
-s2, img_2 = camera_2.read()
-s4, img_4 = camera_4.read()
-s6, img_6 = camera_6.read()
-time.sleep(0.5)
+empty0 = cv2.imread('data/test2_0.jpg')
+empty2 = cv2.imread('data/test2_2.jpg')
+empty4 = cv2.imread('data/test2_4.jpg')
+empty6 = cv2.imread('data/test2_6.jpg')
 
-#s0, img_0 = camera_0.read()
-#s2, img_2 = camera_2.read()
-s4, img_4 = camera_4.read()
-#s6, img_6 = camera_6.read()
-time.sleep(0.5)
+th = 140
 
-#s6, img_6 = camera_6.read()
-#time.sleep(0.1)
-#s0, img_0 = camera_0.read()
-#s2, img_2 = camera_2.read()
-#time.sleep(1)
-#s4, img_4 = camera_4.read()
-#time.sleep(1)
-#s6, img_6 = camera_6.read()
+empty_gray0 = cv2.cvtColor(empty0, cv2.COLOR_BGR2GRAY)
+trash,empty_BW0 = cv2.threshold(empty_gray0, th, 255, cv2.THRESH_BINARY)
 
+empty_gray2 = cv2.cvtColor(empty2, cv2.COLOR_BGR2GRAY)
+trash,empty_BW2 = cv2.threshold(empty_gray2, th, 255, cv2.THRESH_BINARY)
 
-cv2.imwrite('data/test2_0.jpg', img_0)
-cv2.imwrite('data/test2_2.jpg', img_2)
-cv2.imwrite('data/test2_4.jpg', img_4)
-cv2.imwrite('data/test2_6.jpg', img_6)
+empty_gray4 = cv2.cvtColor(empty4, cv2.COLOR_BGR2GRAY)
+trash,empty_BW4 = cv2.threshold(empty_gray4, th, 255, cv2.THRESH_BINARY)
+
+empty_gray6 = cv2.cvtColor(empty6, cv2.COLOR_BGR2GRAY)
+trash,empty_BW6 = cv2.threshold(empty_gray6, th, 255, cv2.THRESH_BINARY)
+s0, img0 = camera_0.read()
+s2, img2 = camera_2.read()
+s4, img4 = camera_4.read()
+s6, img6 = camera_6.read()
+img_gray0 = cv2.cvtColor(img0, cv2.COLOR_BGR2GRAY)
+trash, img_BW0 = cv2.threshold(img_gray0, th, 255, cv2.THRESH_BINARY)
+
+img_gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+trash, img_BW2 = cv2.threshold(img_gray2, th, 255, cv2.THRESH_BINARY)
+
+img_gray4 = cv2.cvtColor(img4, cv2.COLOR_BGR2GRAY)
+trash, img_BW4 = cv2.threshold(img_gray4, th, 255, cv2.THRESH_BINARY)
+
+img_gray6 = cv2.cvtColor(img6, cv2.COLOR_BGR2GRAY)
+trash, img_BW6 = cv2.threshold(img_gray6, th, 255, cv2.THRESH_BINARY)
+
+diff0 = empty_BW0 - img_BW0
+print(diff0)
+
+diff2 = empty_BW2 - img_BW2
+print(diff2)
+diff4 = empty_BW4 - img_BW4
+print(diff4)
+diff6 = empty_BW6 - img_BW6
+print(diff6)
+exit()
+while 1:
+    time.sleep(0.1)
+    s0, img0 = camera_0.read()
+    s2, img2 = camera_2.read()
+    s4, img4 = camera_4.read()
+    s6, img6 = camera_6.read()
+    img_gray0 = cv2.cvtColor(img0, cv2.COLOR_BGR2GRAY)
+    trash, img_BW0 = cv2.threshold(img_gray0, th, 255, cv2.THRESH_BINARY)
+
+    img_gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+    trash, img_BW2 = cv2.threshold(img_gray2, th, 255, cv2.THRESH_BINARY)
+
+    img_gray4 = cv2.cvtColor(img4, cv2.COLOR_BGR2GRAY)
+    trash, img_BW4 = cv2.threshold(img_gray4, th, 255, cv2.THRESH_BINARY)
+
+    img_gray6 = cv2.cvtColor(img6, cv2.COLOR_BGR2GRAY)
+    trash, img_BW6 = cv2.threshold(img_gray6, th, 255, cv2.THRESH_BINARY)
 
 exit()
-device_paths = glob.glob('/dev/video*')
-# Connect to each camera initially
-camera_AR_path = '/dev/video0'
-camera_AR0 = cv2.VideoCapture(camera_AR_path)
-
-camera_AR_path = '/dev/video2'
-camera_AR2 = cv2.VideoCapture(camera_AR_path)
-
-camera_AR_path = '/dev/video4'
-camera_AR4 = cv2.VideoCapture(camera_AR_path)
-
-camera_AR_path = '/dev/video6'
-camera_AR6 = cv2.VideoCapture(camera_AR_path)
-
-s, img_0 = camera_AR0.read()
-s, img_2 = camera_AR2.read()
-s, img_4 = camera_AR4.read()
-s, img_6 = camera_AR6.read()
-
-
-time.sleep(0.1)
-
-
-s, img_0 = camera_AR0.read()
-s, img_2 = camera_AR2.read()
-s, img_4 = camera_AR4.read()
-s, img_6 = camera_AR6.read()
-
-time.sleep(0.1)
-
-
-s, img_0 = camera_AR0.read()
-s, img_2 = camera_AR2.read()
-s, img_4 = camera_AR4.read()
-s, img_6 = camera_AR6.read()
-
-cv2.imwrite('data/test_0.png', img_0)
-cv2.imwrite('data/test_2.png', img_2)
-cv2.imwrite('data/test_4.png', img_4)
-cv2.imwrite('data/test_6.png', img_6)
