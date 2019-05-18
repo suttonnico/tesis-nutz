@@ -87,16 +87,6 @@ trash, img_BW4 = cv2.threshold(img_gray4, th, 255, cv2.THRESH_BINARY)
 img_gray6 = cv2.cvtColor(img6, cv2.COLOR_BGR2GRAY)
 trash, img_BW6 = cv2.threshold(img_gray6, th, 255, cv2.THRESH_BINARY)
 
-diff0 = empty_BW0 - img_BW0
-print(diff0)
-
-diff2 = empty_BW2 - img_BW2
-print(diff2)
-diff4 = empty_BW4 - img_BW4
-print(diff4)
-diff6 = empty_BW6 - img_BW6
-print(diff6)
-exit()
 while 1:
     time.sleep(0.1)
     s0, img0 = camera_0.read()
@@ -105,14 +95,18 @@ while 1:
     s6, img6 = camera_6.read()
     img_gray0 = cv2.cvtColor(img0, cv2.COLOR_BGR2GRAY)
     trash, img_BW0 = cv2.threshold(img_gray0, th, 255, cv2.THRESH_BINARY)
-
     img_gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
     trash, img_BW2 = cv2.threshold(img_gray2, th, 255, cv2.THRESH_BINARY)
-
     img_gray4 = cv2.cvtColor(img4, cv2.COLOR_BGR2GRAY)
     trash, img_BW4 = cv2.threshold(img_gray4, th, 255, cv2.THRESH_BINARY)
-
     img_gray6 = cv2.cvtColor(img6, cv2.COLOR_BGR2GRAY)
     trash, img_BW6 = cv2.threshold(img_gray6, th, 255, cv2.THRESH_BINARY)
 
+    diff0 = empty_BW0 - img_BW0
+    diff2 = empty_BW2 - img_BW2
+    diff4 = empty_BW4 - img_BW4
+    diff6 = empty_BW6 - img_BW6
+    if diff0.sum() > 10 or diff2.sum() > 100 or diff4.sum() > 100 or diff6.sum() > 100:
+        print(diff0.sum())
+        i2c.stop()
 exit()
