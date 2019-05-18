@@ -49,6 +49,8 @@ s2, img_2 = camera_2.read()
 """
 
 s4, img_4 = camera_4.read()
+time.sleep(0.5)
+s4, img_4 = camera_4.read()
 #s6, img_6 = camera_6.read()
 #time.sleep(0.1)
 #s0, img_0 = camera_0.read()
