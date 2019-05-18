@@ -16,8 +16,15 @@ def go():
 def stop():
         bus.write_byte(addr,ord('1'))
 
-def open():
+def openA1():
         bus.write_byte(addr,ord('U'))
 
-def close():
+def closeA1():
         bus.write_byte(addr,ord('u'))
+
+def openA2():
+        bus.write_byte(addr,ord('V'))
+
+def closeA2():
+        bus.write_byte(addr,ord('v'))
+
