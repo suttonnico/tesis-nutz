@@ -40,8 +40,8 @@ img6 = cam6.get_image()
 time.sleep(down_time)
 
 print(time.time()-start)
-pygame.image.save(img0,"data/test2_0.jpg")
-pygame.image.save(img2,"data/test2_2.jpg")
-pygame.image.save(img4,"data/test2_4.jpg")
-pygame.image.save(img6,"data/test2_6.jpg")
+pygame.image.save(img0,"data/test3_0.jpg")
+pygame.image.save(img2,"data/test3_2.jpg")
+pygame.image.save(img4,"data/test3_4.jpg")
+pygame.image.save(img6,"data/test3_6.jpg")
 
