@@ -116,20 +116,22 @@ while 1:
 
         i2c.stop()
         i2c.openA1()
-
+        time.sleep(0.4)
         cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
         cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
         cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
         cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
         start = time.time()
-        while time.time()-start < 2:
+        i2c.closeA1()
+
+        while time.time()-start < 1:
             s0, img0 = camera_0.read()
             s2, img2 = camera_2.read()
             s4, img4 = camera_4.read()
             s6, img6 = camera_6.read()
         i = i+1
         i2c.closeA1()
-        time.sleep(0.4)
+
         i2c.go()
 
 exit()
