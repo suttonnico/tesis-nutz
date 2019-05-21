@@ -110,6 +110,9 @@ while 1:
     thr = 3384035
     if diff0.sum() > thr or diff2.sum() > thr or diff4.sum() > thr or diff6.sum() > thr:
         print(diff0.sum())
+        print(diff1.sum())
+        print(diff2.sum())
+        print(diff3.sum())
         i2c.stop()
         i2c.openA1()
         time.sleep(0.4)
