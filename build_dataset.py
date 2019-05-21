@@ -122,6 +122,10 @@ while 1:
         cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
         i2c.closeA1()
         i = i+1
+        img0 = empty0
+        img2 = empty2
+        img4 = empty4
+        img6 = empty6
         time.sleep(1)
         i2c.go()
 
