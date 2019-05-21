@@ -113,6 +113,7 @@ while 1:
         print('foto4 :' + str(diff4.sum()))
         print(zero_pad(i, 6))
 
+
         i2c.stop()
         i2c.openA1()
         time.sleep(0.4)
@@ -121,12 +122,13 @@ while 1:
         cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
         cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
         i2c.closeA1()
+        start = time.time()
+        while time.time()-start < 2:
+            s0, img0 = camera_0.read()
+            s2, img2 = camera_2.read()
+            s4, img4 = camera_4.read()
+            s6, img6 = camera_6.read()
         i = i+1
-        img0 = empty0
-        img2 = empty2
-        img4 = empty4
-        img6 = empty6
-        time.sleep(10)
         i2c.go()
 
 exit()
