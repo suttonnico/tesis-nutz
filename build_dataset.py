@@ -108,11 +108,10 @@ while 1:
     diff4 = empty_BW4 - img_BW4
     diff6 = empty_BW6 - img_BW6
     thr = 3384035
-    if diff2.sum() > thr: #or diff4.sum() > thr or diff6.sum() > thr:
-        print('foto0 :'+str(diff0.sum()))
+    if diff2.sum() > thr or diff4.sum() > thr: #or diff6.sum() > thr:
         print('foto2 :' + str(diff2.sum()))
         print('foto4 :' + str(diff4.sum()))
-        print('foto6 :' + str(diff6.sum()))
+        print(zero_pad(i, 6))
 
         i2c.stop()
         i2c.openA1()
@@ -127,7 +126,7 @@ while 1:
         img2 = empty2
         img4 = empty4
         img6 = empty6
-        time.sleep(1)
+        time.sleep(10)
         i2c.go()
 
 exit()
