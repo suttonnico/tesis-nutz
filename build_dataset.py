@@ -7,6 +7,8 @@ i2c.openA1()
 time.sleep(0.4)
 i2c.closeA1()
 i2c.closeA2()
+i2c.closeB1()
+i2c.closeB2()
 
 def zero_pad(x,n):
     for i in range(1,5):
@@ -141,15 +143,15 @@ while 1:
             print('foto2 :' + str(diff2.sum()))
             print('foto4 :' + str(diff4.sum()))
             print('foto6 :' + str(diff6.sum()))
-            print(zero_pad(i, 6))
+            print(zero_pad(j, 6))
 
             i2c.stop()
-            i2c.openA1()
+            i2c.openB1()
             time.sleep(0.4)
            # cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
           #  cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
-            cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
-            cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
+            cv2.imwrite('data/nuez4_' + zero_pad(j, 6) + '.png', img4)
+            cv2.imwrite('data/nuez6_' + zero_pad(j, 6) + '.png', img6)
             start = time.time()
             i2c.closeA1()
 
@@ -158,8 +160,8 @@ while 1:
          #       s2, img2 = camera_2.read()
                 s4, img4 = camera_4.read()
                 s6, img6 = camera_6.read()
-            i = i + 1
-            i2c.closeA1()
+            j = j + 1
+            i2c.closeB1()
 
             i2c.go()
 
