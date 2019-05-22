@@ -138,6 +138,7 @@ while 1:
         i2c.closeA1()
 
         i2c.go()
+        """
         if diff4.sum() > thr or diff6.sum() > thr:  # or diff4.sum() > thr or diff6.sum() > thr:
             print('foto0 :' + str(diff0.sum()))
             print('foto2 :' + str(diff2.sum()))
@@ -164,5 +165,6 @@ while 1:
             i2c.closeB1()
 
             i2c.go()
+            """
 
 exit()
