@@ -123,7 +123,7 @@ while 1:
         print(zero_pad(i, 6))
 
 
-        i2c.stop()
+       # i2c.stop()
         i2c.openA1()
         time.sleep(0.4)
 
@@ -142,7 +142,7 @@ while 1:
         i = i+1
         i2c.closeA1()
 
-        i2c.go()
+       # i2c.go()
         """
         if diff4.sum() > thr or diff6.sum() > thr:  # or diff4.sum() > thr or diff6.sum() > thr:
             print('foto0 :' + str(diff0.sum()))
