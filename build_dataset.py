@@ -110,7 +110,7 @@ while 1:
     diff2 = empty_BW2 - img_BW2
     diff4 = empty_BW4 - img_BW4
     diff6 = empty_BW6 - img_BW6
-    thr = 1000000
+    thr = 1200000
     print("diff0"+str(diff0.sum()))
     print("diff2"+str(diff2.sum()))
     print("diff4"+str(diff4.sum()))
