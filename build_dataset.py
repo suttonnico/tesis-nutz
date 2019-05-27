@@ -111,13 +111,13 @@ while 1:
     diff2 = empty_BW2 - img_BW2
     diff4 = empty_BW4 - img_BW4
     diff6 = empty_BW6 - img_BW6
-    thr2 = 2000000
-    thr4 = 2000000
+    thr2 = 1000000
+    thr0 = 2000000
     #print("diff0"+str(diff0.sum()))
     #print("diff2"+str(diff2.sum()))
     #print("diff4"+str(diff4.sum()))
     #print("diff6"+str(diff6.sum()))
-    if  diff2.sum() > thr2 or diff4.sum() > thr4 :
+    if  diff2.sum() > thr0 or diff4.sum() > thr0 :
         print('foto0 :' + str(diff0.sum()))
         print('foto2 :' + str(diff2.sum()))
         print('foto4 :' + str(diff4.sum()))
