@@ -111,12 +111,13 @@ while 1:
     diff2 = empty_BW2 - img_BW2
     diff4 = empty_BW4 - img_BW4
     diff6 = empty_BW6 - img_BW6
-    thr = 1000000
+    thr2 = 1000000
+    thr4 = 1000000
     #print("diff0"+str(diff0.sum()))
     #print("diff2"+str(diff2.sum()))
     #print("diff4"+str(diff4.sum()))
     #print("diff6"+str(diff6.sum()))
-    if  diff2.sum() > thr or diff4.sum() > thr :
+    if  diff2.sum() > thr2 or diff4.sum() > thr4 :
         print('foto0 :' + str(diff0.sum()))
         print('foto2 :' + str(diff2.sum()))
         print('foto4 :' + str(diff4.sum()))
@@ -128,10 +129,10 @@ while 1:
         i2c.openA1()
         time.sleep(0.4)
 
-        #cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
+        cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
         cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
         cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
-        #cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
+        cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
         start = time.time()
         i2c.closeA1()
 
@@ -142,6 +143,7 @@ while 1:
             s6, img6 = camera_6.read()
         i = i+1
         i2c.closeA1()
+
 
        # i2c.go()
 
