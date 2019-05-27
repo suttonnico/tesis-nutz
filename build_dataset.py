@@ -55,10 +55,10 @@ s2, img_2 = camera_2.read()
 s4, img_4 = camera_4.read()
 s6, img_6 = camera_6.read()
 
-empty0 = cv2.imread('data/test2_0.png')
-empty2 = cv2.imread('data/test2_2.png')
-empty4 = cv2.imread('data/test2_4.jpg')
-empty6 = cv2.imread('data/test2_6.jpg')
+empty0 = cv2.imread('data/empty/empty0.png')
+empty2 = cv2.imread('data/empty/empty2.png')
+empty4 = cv2.imread('data/empty/empty4.png')
+empty6 = cv2.imread('data/empty/empty6.png')
 
 th = 140
 
