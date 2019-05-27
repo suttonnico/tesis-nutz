@@ -144,7 +144,7 @@ while 1:
         i = i+1
         i2c.closeA1()
 
-        if diff0.sum() > thr2 or diff6.sum() > thr4:
+        if diff0.sum() > thr2 or diff6.sum() > thr2:
             print('foto0 :' + str(diff0.sum()))
             print('foto2 :' + str(diff2.sum()))
             print('foto4 :' + str(diff4.sum()))
