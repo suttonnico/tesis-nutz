@@ -115,7 +115,7 @@ while 1:
     print("diff2"+str(diff2.sum()))
     print("diff4"+str(diff4.sum()))
     print("diff6"+str(diff6.sum()))
-    if diff0.sum() > thr or diff2.sum() > thr:# or diff4.sum() > thr or diff6.sum() > thr:
+    if diff0.sum() > thr or diff2.sum() > thr or diff4.sum() > thr or diff6.sum() > thr:
         print('foto0 :' + str(diff0.sum()))
         print('foto2 :' + str(diff2.sum()))
         print('foto4 :' + str(diff4.sum()))
@@ -129,8 +129,8 @@ while 1:
 
         cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
         cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
-       # cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
-       # cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
+        cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
+        cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
         start = time.time()
         i2c.closeA1()
 
