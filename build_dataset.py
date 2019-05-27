@@ -112,8 +112,8 @@ while 1:
     diff2 = empty_BW2 - img_BW2
     diff4 = empty_BW4 - img_BW4
     diff6 = empty_BW6 - img_BW6
-    thr2 = 2000000
-    thr0 = 2000000
+    thr2 = 1500000
+    thr0 = 1500000
     #print("diff0"+str(diff0.sum()))
     #print("diff2"+str(diff2.sum()))
     #print("diff4"+str(diff4.sum()))
@@ -165,8 +165,8 @@ while 1:
 
         while time.time() - start < 0.4:
             s0, img0 = camera_0.read()
-            s2, img2 = camera_2.read()
-            s4, img4 = camera_4.read()
+            #s2, img2 = camera_2.read()
+            #s4, img4 = camera_4.read()
             s6, img6 = camera_6.read()
         i = i + 1
 
