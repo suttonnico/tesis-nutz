@@ -5,7 +5,6 @@ import glob
 import time
 import shutil
 
-shutil.rmtree('/data',ignore_errors=True)
 i2c.stop()
 i2c.openA1()
 time.sleep(0.4)
@@ -16,7 +15,7 @@ i2c.closeA2()
 i2c.closeB1()
 i2c.closeB2()
 #os.remove('data')
-os.mkdir('/data')
+#os.mkdir('/data')
 def zero_pad(x,n):
     for i in range(1,5):
         if x < 10 ** i:
