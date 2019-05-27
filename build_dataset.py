@@ -145,30 +145,30 @@ while 1:
         i = i+1
         i2c.closeA1()
 
-        if diff0.sum() > thr2 or diff6.sum() > thr2:
-            print('foto0 :' + str(diff0.sum()))
-            print('foto2 :' + str(diff2.sum()))
-            print('foto4 :' + str(diff4.sum()))
-            print('foto6 :' + str(diff6.sum()))
-            print(zero_pad(i, 6))
+    if diff0.sum() > thr2 or diff6.sum() > thr2:
+        print('foto0 :' + str(diff0.sum()))
+        print('foto2 :' + str(diff2.sum()))
+        print('foto4 :' + str(diff4.sum()))
+        print('foto6 :' + str(diff6.sum()))
+        print(zero_pad(i, 6))
 
-            # i2c.stop()
-            i2c.openB1()
-            time.sleep(0.4)
+        # i2c.stop()
+        i2c.openB1()
+        time.sleep(0.4)
 
-            cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
-            #cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
-            #cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
-            cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
-            start = time.time()
-            i2c.closeB1()
+        cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
+        #cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
+        #cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
+        cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
+        start = time.time()
+        i2c.closeB1()
 
-            while time.time() - start < 0.4:
-                s0, img0 = camera_0.read()
-                s2, img2 = camera_2.read()
-                s4, img4 = camera_4.read()
-                s6, img6 = camera_6.read()
-            i = i + 1
+        while time.time() - start < 0.4:
+            s0, img0 = camera_0.read()
+            s2, img2 = camera_2.read()
+            s4, img4 = camera_4.read()
+            s6, img6 = camera_6.read()
+        i = i + 1
 
 
 
