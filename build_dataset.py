@@ -137,10 +137,10 @@ while 1:
         i2c.closeA1()
 
         while time.time()-start < 0.4:
-            s0, img0 = camera_0.read()
+        #    s0, img0 = camera_0.read()
             s2, img2 = camera_2.read()
             s4, img4 = camera_4.read()
-            s6, img6 = camera_6.read()
+         #   s6, img6 = camera_6.read()
         i = i+1
         i2c.closeA1()
 
