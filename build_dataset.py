@@ -1,5 +1,6 @@
 import cv2
 import i2c_module as i2c
+import os
 import glob
 import time
 i2c.stop()
@@ -11,7 +12,8 @@ i2c.closeA1()
 i2c.closeA2()
 i2c.closeB1()
 i2c.closeB2()
-
+os.remove('data')
+os.mkdir('data')
 def zero_pad(x,n):
     for i in range(1,5):
         if x < 10 ** i:
