@@ -4,6 +4,7 @@ import glob
 import time
 i2c.stop()
 i2c.openA1()
+time.sleep(0.4)
 i2c.openB1()
 time.sleep(0.4)
 i2c.closeA1()
