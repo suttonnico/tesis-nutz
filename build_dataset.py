@@ -57,10 +57,10 @@ s2, img_2 = camera_2.read()
 s4, img_4 = camera_4.read()
 s6, img_6 = camera_6.read()
 
-empty0 = cv2.imread('data/empty/empty0.png')
-empty2 = cv2.imread('data/empty/empty2.png')
-empty4 = cv2.imread('data/empty/empty4.png')
-empty6 = cv2.imread('data/empty/empty6.png')
+empty0 = cv2.imread('empty/empty0.png')
+empty2 = cv2.imread('empty/empty2.png')
+empty4 = cv2.imread('empty/empty4.png')
+empty6 = cv2.imread('empty/empty6.png')
 
 th = 140
 
@@ -126,7 +126,11 @@ while 1:
         print(zero_pad(i, 6))
 
 
-       # i2c.stop()
+        i2c.stop()
+        time.sleep(0.1)
+        s2, img2 = camera_2.read()
+        s4, img4 = camera_4.read()
+
         i2c.openA1()
         time.sleep(0.4)
 
@@ -144,6 +148,7 @@ while 1:
          #   s6, img6 = camera_6.read()
         i = i+1
         i2c.closeA1()
+        i2c.go()
 
     if diff0.sum() > thr2 or diff6.sum() > thr2:
         print('foto0 :' + str(diff0.sum()))
@@ -152,7 +157,10 @@ while 1:
         print('foto6 :' + str(diff6.sum()))
         print(zero_pad(i, 6))
 
-        # i2c.stop()
+        i2c.stop()
+        time.sleep(0.1)
+        s2, img0 = camera_0.read()
+        s4, img6 = camera_6.read()
         i2c.openB1()
         time.sleep(0.4)
 
@@ -169,10 +177,7 @@ while 1:
             #s4, img4 = camera_4.read()
             s6, img6 = camera_6.read()
         i = i + 1
-
-
-
-       # i2c.go()
+        i2c.go()
 
 
 
