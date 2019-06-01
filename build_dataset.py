@@ -171,6 +171,7 @@ while 1:
     # print("diff4"+str(diff4.sum()))
     # print("diff6"+str(diff6.sum()))
     if diff2.sum() > thr0 or diff4.sum() > thr0 and flag == 1:
+        print("IN 1")
       #  print('foto0 :' + str(diff0.sum()))
       #  print('foto2 :' + str(diff2.sum()))
       #  print('foto4 :' + str(diff4.sum()))
@@ -202,6 +203,7 @@ while 1:
         i2c.go()
 
     if diff0.sum() > thr2 or diff6.sum() > thr2 and flag == 1:
+        print("IN 2")
       #  print('foto0 :' + str(diff0.sum()))
       #  print('foto2 :' + str(diff2.sum()))
       #  print('foto4 :' + str(diff4.sum()))
