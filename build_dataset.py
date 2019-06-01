@@ -5,6 +5,16 @@ import glob
 import time
 import shutil
 
+
+import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
+GPIO.setwarnings(False) # Ignore warning for now
+GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
+GPIO.setup(40, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(36, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(37, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(33, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+
 i2c.stop()
 i2c.openA1()
 time.sleep(0.4)
@@ -16,7 +26,7 @@ i2c.closeB1()
 i2c.closeB2()
 
 
-
+#40 37 36 33
 
 # os.remove('data')
 # os.mkdir('/data')
@@ -107,6 +117,14 @@ i2c.go()
 i = 100
 j = 100
 while 1:
+    if GPIO.input(40) == GPIO.HIGH:
+        print("Button 40 was pushed!")
+    if GPIO.input(37) == GPIO.HIGH:
+        print("Button 37 was pushed!")
+    if GPIO.input(36) == GPIO.HIGH:
+        print("Button 36 was pushed!")
+    if GPIO.input(33) == GPIO.HIGH:
+        print("Button 33 was pushed!")
     time.sleep(0.1)
     s0, img0 = camera_0.read()
     s2, img2 = camera_2.read()
