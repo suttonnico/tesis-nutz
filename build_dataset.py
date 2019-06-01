@@ -133,7 +133,8 @@ cam_ind = choose_cameras([camera_0, camera_2, camera_4, camera_6], empty_BW, th)
 i2c.go()
 i = 0
 j = 0
-
+lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
+lcd.lcd_string("Nueces DER: " + str(j), lcd.LCD_LINE_2)
 flag  = False
 while 1:
     if GPIO.input(pin_parada) == GPIO.LOW:
