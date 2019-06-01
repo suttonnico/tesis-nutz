@@ -175,8 +175,6 @@ while 1:
     # print("diff4"+str(diff4.sum()))
     # print("diff6"+str(diff6.sum()))
     if (diff2.sum() > thr0 or diff4.sum() > thr0) and flag:
-        lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
-        lcd.lcd_string("Nueces DER: " + str(j), lcd.LCD_LINE_2)
         print("IN 1")
       #  print('foto0 :' + str(diff0.sum()))
       #  print('foto2 :' + str(diff2.sum()))
@@ -206,11 +204,12 @@ while 1:
         #   s6, img6 = camera_6.read()
         i = i + 1
         i2c.closeA1()
+        lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
+        lcd.lcd_string("Nueces DER: " + str(j), lcd.LCD_LINE_2)
+
         i2c.go()
 
     if (diff0.sum() > thr2 or diff6.sum() > thr2) and flag:
-        lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
-        lcd.lcd_string("Nueces DER: " + str(j), lcd.LCD_LINE_2)
         print("IN 2")
       #  print('foto0 :' + str(diff0.sum()))
       #  print('foto2 :' + str(diff2.sum()))
@@ -238,6 +237,8 @@ while 1:
             # s4, img4 = camera_4.read()
             s6, img6 = camera_6.read()
         j = j + 1
+        lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
+        lcd.lcd_string("Nueces DER: " + str(j), lcd.LCD_LINE_2)
         i2c.go()
 
 exit()
