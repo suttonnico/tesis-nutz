@@ -134,11 +134,13 @@ while 1:
         i2c.stop()
         i2c.openB1()
         i2c.openA1()
+        print("STOP")
     if GPIO.input(pin_arranque) == GPIO.LOW:
         i2c.closeB1()
         i2c.closeA1()
         time.sleep(1)
         i2c.go()
+        print("GO")
 
     time.sleep(0.1)
     s0, img0 = camera_0.read()
