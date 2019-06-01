@@ -7,6 +7,10 @@ import shutil
 
 
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
+
+pin_parada = 40
+pin_arranque = 37
+
 GPIO.setwarnings(False) # Ignore warning for now
 GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
 GPIO.setup(40, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -27,6 +31,12 @@ i2c.closeB2()
 
 
 #40 37 36 33
+
+#arriba 36
+#abajo 33
+#rojo 40
+#verde 37
+
 
 # os.remove('data')
 # os.mkdir('/data')
@@ -50,7 +60,8 @@ def choose_cameras(cams, empty_bw, bw_threshold):
                 out[i] = j
                 print(str(i) + str(j) + str(l_min))
     print(out)
-    return out
+    return [0,2,4,6]
+    #return out
 
 
 """
@@ -116,15 +127,11 @@ cam_ind = choose_cameras([camera_0, camera_2, camera_4, camera_6], empty_BW, th)
 i2c.go()
 i = 100
 j = 100
+
+
 while 1:
-    if GPIO.input(40) == GPIO.LOW:
-        print("Button 40 was pushed!")
-    if GPIO.input(37) == GPIO.LOW:
-        print("Button 37 was pushed!")
-    if GPIO.input(36) == GPIO.LOW:
-        print("Button 36 was pushed!")
-    if GPIO.input(33) == GPIO.LOW:
-        print("Button 33 was pushed!")
+    if GPIO.input(pin_parada) == GPIO.LOW:
+        break
     time.sleep(0.1)
     s0, img0 = camera_0.read()
     s2, img2 = camera_2.read()
