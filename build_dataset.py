@@ -14,28 +14,34 @@ i2c.closeA1()
 i2c.closeA2()
 i2c.closeB1()
 i2c.closeB2()
-#os.remove('data')
-#os.mkdir('/data')
-def zero_pad(x,n):
-    for i in range(1,5):
-        if x < 10 ** i:
-            return (n-i)*'0'+str(x)
 
-def choose_cameras(cams,empty_BW,th):
-    out = [0,2,4,6]
+
+
+
+# os.remove('data')
+# os.mkdir('/data')
+def zero_pad(x, n):
+    for i in range(1, 5):
+        if x < 10 ** i:
+            return (n - i) * '0' + str(x)
+
+
+def choose_cameras(cams, empty_bw, bw_threshold):
+    out = [0, 2, 4, 6]
     for i in range(4):
         s, img = cams[i].read()
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        trash, img_BW = cv2.threshold(img_gray, th, 255, cv2.THRESH_BINARY)
+        trash, img_bw = cv2.threshold(img_gray, bw_threshold, 255, cv2.THRESH_BINARY)
         l_min = 99999999999
         for j in range(4):
-            diff = empty_BW[j]-img_BW
+            diff = empty_bw[j] - img_bw
             if diff.sum() < l_min:
                 l_min = diff.sum()
                 out[i] = j
-                print(str(i)+str(j)+str(l_min))
+                print(str(i) + str(j) + str(l_min))
     print(out)
     return out
+
 
 """
 nut_dir = 'data/'
@@ -84,18 +90,18 @@ empty6 = cv2.imread('empty/empty6.png')
 th = 140
 
 empty_gray0 = cv2.cvtColor(empty0, cv2.COLOR_BGR2GRAY)
-trash,empty_BW0 = cv2.threshold(empty_gray0, th, 255, cv2.THRESH_BINARY)
+trash, empty_BW0 = cv2.threshold(empty_gray0, th, 255, cv2.THRESH_BINARY)
 
 empty_gray2 = cv2.cvtColor(empty2, cv2.COLOR_BGR2GRAY)
-trash,empty_BW2 = cv2.threshold(empty_gray2, th, 255, cv2.THRESH_BINARY)
+trash, empty_BW2 = cv2.threshold(empty_gray2, th, 255, cv2.THRESH_BINARY)
 
 empty_gray4 = cv2.cvtColor(empty4, cv2.COLOR_BGR2GRAY)
-trash,empty_BW4 = cv2.threshold(empty_gray4, th, 255, cv2.THRESH_BINARY)
+trash, empty_BW4 = cv2.threshold(empty_gray4, th, 255, cv2.THRESH_BINARY)
 
 empty_gray6 = cv2.cvtColor(empty6, cv2.COLOR_BGR2GRAY)
-trash,empty_BW6 = cv2.threshold(empty_gray6, th, 255, cv2.THRESH_BINARY)
-empty_BW = [empty_BW0,empty_BW2,empty_BW4,empty_BW6]
-cam_ind = choose_cameras([camera_0,camera_2,camera_4,camera_6],empty_BW,th)
+trash, empty_BW6 = cv2.threshold(empty_gray6, th, 255, cv2.THRESH_BINARY)
+empty_BW = [empty_BW0, empty_BW2, empty_BW4, empty_BW6]
+cam_ind = choose_cameras([camera_0, camera_2, camera_4, camera_6], empty_BW, th)
 
 i2c.go()
 i = 100
@@ -121,17 +127,16 @@ while 1:
     diff6 = empty_BW[cam_ind[3]] - img_BW6
     thr2 = 1800000
     thr0 = 1800000
-    #print("diff0"+str(diff0.sum()))
-    #print("diff2"+str(diff2.sum()))
-    #print("diff4"+str(diff4.sum()))
-    #print("diff6"+str(diff6.sum()))
-    if  diff2.sum() > thr0 or diff4.sum() > thr0 :
+    # print("diff0"+str(diff0.sum()))
+    # print("diff2"+str(diff2.sum()))
+    # print("diff4"+str(diff4.sum()))
+    # print("diff6"+str(diff6.sum()))
+    if diff2.sum() > thr0 or diff4.sum() > thr0:
         print('foto0 :' + str(diff0.sum()))
         print('foto2 :' + str(diff2.sum()))
         print('foto4 :' + str(diff4.sum()))
         print('foto6 :' + str(diff6.sum()))
         print(zero_pad(i, 6))
-
 
         i2c.stop()
         time.sleep(0.1)
@@ -141,19 +146,19 @@ while 1:
         i2c.openA1()
         time.sleep(0.4)
 
-        #cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
+        # cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
         cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
         cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
-        #cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
+        # cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
         start = time.time()
         i2c.closeA1()
 
-        while time.time()-start < 0.4:
-        #    s0, img0 = camera_0.read()
+        while time.time() - start < 0.4:
+            #    s0, img0 = camera_0.read()
             s2, img2 = camera_2.read()
             s4, img4 = camera_4.read()
-         #   s6, img6 = camera_6.read()
-        i = i+1
+        #   s6, img6 = camera_6.read()
+        i = i + 1
         i2c.closeA1()
         i2c.go()
 
@@ -172,20 +177,18 @@ while 1:
         time.sleep(0.4)
 
         cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
-        #cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
-        #cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
+        # cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
+        # cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
         cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
         start = time.time()
         i2c.closeB1()
 
         while time.time() - start < 0.4:
             s0, img0 = camera_0.read()
-            #s2, img2 = camera_2.read()
-            #s4, img4 = camera_4.read()
+            # s2, img2 = camera_2.read()
+            # s4, img4 = camera_4.read()
             s6, img6 = camera_6.read()
         i = i + 1
         i2c.go()
-
-
 
 exit()
