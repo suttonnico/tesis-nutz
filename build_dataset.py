@@ -142,6 +142,9 @@ while 1:
         i2c.openB1()
         i2c.openA1()
         flag = False
+        time.sleep(1)
+        if GPIO.input(pin_parada) == GPIO.LOW:
+            exit(0)
         print("STOP")
     if GPIO.input(pin_arranque) == GPIO.LOW:
         i2c.closeB1()
