@@ -131,7 +131,15 @@ j = 100
 
 while 1:
     if GPIO.input(pin_parada) == GPIO.LOW:
-        break
+        i2c.stop()
+        i2c.openB1()
+        i2c.openA1()
+    if GPIO.input(pin_arranque) == GPIO.LOW:
+        i2c.closeB1()
+        i2c.closeA1()
+        time.sleep(1)
+        i2c.go()
+
     time.sleep(0.1)
     s0, img0 = camera_0.read()
     s2, img2 = camera_2.read()
