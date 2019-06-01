@@ -21,6 +21,21 @@ def zero_pad(x,n):
         if x < 10 ** i:
             return (n-i)*'0'+str(x)
 
+def choose_cameras(cams,empty_BW,th):
+    out = [0,2,4,6]
+    for i in range(4):
+        s, img = cams[i].read()
+        img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        trash, img_BW = cv2.threshold(img_gray, th, 255, cv2.THRESH_BINARY)
+        l_min = 99999999999
+        for j in range(4):
+            diff = empty_BW[j]-img_BW
+            if diff.sum() < l_min:
+                l_min = diff.sum()
+                out[i] = j
+                print(str(i)+str(j)+str(l_min))
+    print(out)
+    return out
 
 """
 nut_dir = 'data/'
@@ -79,21 +94,9 @@ trash,empty_BW4 = cv2.threshold(empty_gray4, th, 255, cv2.THRESH_BINARY)
 
 empty_gray6 = cv2.cvtColor(empty6, cv2.COLOR_BGR2GRAY)
 trash,empty_BW6 = cv2.threshold(empty_gray6, th, 255, cv2.THRESH_BINARY)
-s0, img0 = camera_0.read()
-s2, img2 = camera_2.read()
-s4, img4 = camera_4.read()
-s6, img6 = camera_6.read()
-img_gray0 = cv2.cvtColor(img0, cv2.COLOR_BGR2GRAY)
-trash, img_BW0 = cv2.threshold(img_gray0, th, 255, cv2.THRESH_BINARY)
+empty_BW = [empty_BW0,empty_BW2,empty_BW4,empty_BW6]
+cam_ind = choose_cameras([camera_0,camera_2,camera_4,camera_6],empty_BW,th)
 
-img_gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
-trash, img_BW2 = cv2.threshold(img_gray2, th, 255, cv2.THRESH_BINARY)
-
-img_gray4 = cv2.cvtColor(img4, cv2.COLOR_BGR2GRAY)
-trash, img_BW4 = cv2.threshold(img_gray4, th, 255, cv2.THRESH_BINARY)
-
-img_gray6 = cv2.cvtColor(img6, cv2.COLOR_BGR2GRAY)
-trash, img_BW6 = cv2.threshold(img_gray6, th, 255, cv2.THRESH_BINARY)
 i2c.go()
 i = 100
 j = 100
@@ -112,10 +115,10 @@ while 1:
     img_gray6 = cv2.cvtColor(img6, cv2.COLOR_BGR2GRAY)
     trash, img_BW6 = cv2.threshold(img_gray6, th, 255, cv2.THRESH_BINARY)
 
-    diff0 = empty_BW0 - img_BW0
-    diff2 = empty_BW2 - img_BW2
-    diff4 = empty_BW4 - img_BW4
-    diff6 = empty_BW6 - img_BW6
+    diff0 = empty_BW[cam_ind[0]] - img_BW0
+    diff2 = empty_BW[cam_ind[1]] - img_BW2
+    diff4 = empty_BW[cam_ind[2]] - img_BW4
+    diff6 = empty_BW[cam_ind[3]] - img_BW6
     thr2 = 1800000
     thr0 = 1800000
     #print("diff0"+str(diff0.sum()))
