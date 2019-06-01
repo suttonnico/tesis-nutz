@@ -117,13 +117,13 @@ i2c.go()
 i = 100
 j = 100
 while 1:
-    if GPIO.input(40) == GPIO.HIGH:
+    if GPIO.input(40) == GPIO.DOWN:
         print("Button 40 was pushed!")
-    if GPIO.input(37) == GPIO.HIGH:
+    if GPIO.input(37) == GPIO.DOWN:
         print("Button 37 was pushed!")
-    if GPIO.input(36) == GPIO.HIGH:
+    if GPIO.input(36) == GPIO.DOWN:
         print("Button 36 was pushed!")
-    if GPIO.input(33) == GPIO.HIGH:
+    if GPIO.input(33) == GPIO.DOWN:
         print("Button 33 was pushed!")
     time.sleep(0.1)
     s0, img0 = camera_0.read()
@@ -150,11 +150,11 @@ while 1:
     # print("diff4"+str(diff4.sum()))
     # print("diff6"+str(diff6.sum()))
     if diff2.sum() > thr0 or diff4.sum() > thr0:
-        print('foto0 :' + str(diff0.sum()))
-        print('foto2 :' + str(diff2.sum()))
-        print('foto4 :' + str(diff4.sum()))
-        print('foto6 :' + str(diff6.sum()))
-        print(zero_pad(i, 6))
+      #  print('foto0 :' + str(diff0.sum()))
+      #  print('foto2 :' + str(diff2.sum()))
+      #  print('foto4 :' + str(diff4.sum()))
+      #  print('foto6 :' + str(diff6.sum()))
+      #  print(zero_pad(i, 6))
 
         i2c.stop()
         time.sleep(0.1)
@@ -181,11 +181,11 @@ while 1:
         i2c.go()
 
     if diff0.sum() > thr2 or diff6.sum() > thr2:
-        print('foto0 :' + str(diff0.sum()))
-        print('foto2 :' + str(diff2.sum()))
-        print('foto4 :' + str(diff4.sum()))
-        print('foto6 :' + str(diff6.sum()))
-        print(zero_pad(i, 6))
+      #  print('foto0 :' + str(diff0.sum()))
+      #  print('foto2 :' + str(diff2.sum()))
+      #  print('foto4 :' + str(diff4.sum()))
+      #  print('foto6 :' + str(diff6.sum()))
+      #  print(zero_pad(i, 6))
 
         i2c.stop()
         time.sleep(0.1)
