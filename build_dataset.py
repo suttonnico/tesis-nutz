@@ -60,7 +60,7 @@ def choose_cameras(cams, empty_bw, bw_threshold):
                 out[i] = j
                 print(str(i) + str(j) + str(l_min))
     print(out)
-    out = [0,2,4,6]
+    out = [0,1,2,3]
     print(out)
 
     return out
