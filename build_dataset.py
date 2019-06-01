@@ -131,19 +131,19 @@ i2c.go()
 i = 100
 j = 100
 
-flag  = 0
+flag  = False
 while 1:
     if GPIO.input(pin_parada) == GPIO.LOW:
         i2c.stop()
         i2c.openB1()
         i2c.openA1()
-        flag = 0
+        flag = False
         print("STOP")
     if GPIO.input(pin_arranque) == GPIO.LOW:
         i2c.closeB1()
         i2c.closeA1()
         time.sleep(1)
-        flag = 1
+        flag = True
         i2c.go()
         print("GO")
     time.sleep(0.1)
@@ -170,7 +170,7 @@ while 1:
     # print("diff2"+str(diff2.sum()))
     # print("diff4"+str(diff4.sum()))
     # print("diff6"+str(diff6.sum()))
-    if diff2.sum() > thr0 or diff4.sum() > thr0 and flag == 1:
+    if (diff2.sum() > thr0 or diff4.sum() > thr0) and flag:
         print("IN 1")
       #  print('foto0 :' + str(diff0.sum()))
       #  print('foto2 :' + str(diff2.sum()))
@@ -202,7 +202,7 @@ while 1:
         i2c.closeA1()
         i2c.go()
 
-    if diff0.sum() > thr2 or diff6.sum() > thr2 and flag == 1:
+    if (diff0.sum() > thr2 or diff6.sum() > thr2) and flag:
         print("IN 2")
       #  print('foto0 :' + str(diff0.sum()))
       #  print('foto2 :' + str(diff2.sum()))
