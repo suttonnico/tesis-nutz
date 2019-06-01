@@ -117,13 +117,13 @@ i2c.go()
 i = 100
 j = 100
 while 1:
-    if GPIO.input(40) == GPIO.DOWN:
+    if GPIO.input(40) == GPIO.LOW:
         print("Button 40 was pushed!")
-    if GPIO.input(37) == GPIO.DOWN:
+    if GPIO.input(37) == GPIO.LOW:
         print("Button 37 was pushed!")
-    if GPIO.input(36) == GPIO.DOWN:
+    if GPIO.input(36) == GPIO.LOW:
         print("Button 36 was pushed!")
-    if GPIO.input(33) == GPIO.DOWN:
+    if GPIO.input(33) == GPIO.LOW:
         print("Button 33 was pushed!")
     time.sleep(0.1)
     s0, img0 = camera_0.read()
