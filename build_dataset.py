@@ -142,6 +142,7 @@ i = 0
 j = 0
 lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
 lcd.lcd_string("Nueces DER: " + str(j), lcd.LCD_LINE_2)
+sleep_time = 0.4
 #flag  = False
 stop = False
 i2c.closeB1()
@@ -199,7 +200,7 @@ while stop == False:
       #  print(zero_pad(i, 6))
 
         i2c.stop()
-        emptyBuffer(2,[camera_2,camera_4])
+        emptyBuffer(sleep_time,[camera_2,camera_4])
         s2, img2 = camera_2.read()
         s4, img4 = camera_4.read()
 
@@ -234,7 +235,7 @@ while stop == False:
       #  print(zero_pad(i, 6))
 
         i2c.stop()
-        emptyBuffer(2, [camera_0, camera_6])
+        emptyBuffer(sleep_time, [camera_0, camera_6])
         s2, img0 = camera_0.read()
         s4, img6 = camera_6.read()
         i2c.openB1()
