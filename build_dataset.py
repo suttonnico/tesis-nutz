@@ -5,11 +5,12 @@ import glob
 import time
 import shutil
 import lcd
-
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 
 
 lcd.lcd_init()
+
+
 
 pin_parada = 40
 pin_arranque = 37
@@ -40,6 +41,12 @@ i2c.closeB2()
 #rojo 40
 #verde 37
 
+def emptyBuffer(t,cams):
+    start = time.time()
+    N = len(cams)
+    while time.time()< t:
+        for i in range(N):
+            cams[i].read()
 
 # os.remove('data')
 # os.mkdir('/data')
@@ -136,7 +143,8 @@ j = 0
 lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
 lcd.lcd_string("Nueces DER: " + str(j), lcd.LCD_LINE_2)
 flag  = False
-while 1:
+stop = False
+while stop == False:
     if GPIO.input(pin_parada) == GPIO.LOW:
         i2c.stop()
         i2c.openB1()
@@ -144,7 +152,8 @@ while 1:
         flag = False
         time.sleep(1)
         if GPIO.input(pin_parada) == GPIO.LOW:
-            exit(0)
+            stop = True
+            print("Good bye")
         print("STOP")
     if GPIO.input(pin_arranque) == GPIO.LOW:
         i2c.closeB1()
@@ -186,7 +195,7 @@ while 1:
       #  print(zero_pad(i, 6))
 
         i2c.stop()
-        time.sleep(0.1)
+        emptyBuffer(0.5,[camera_2,camera_4])
         s2, img2 = camera_2.read()
         s4, img4 = camera_4.read()
 
