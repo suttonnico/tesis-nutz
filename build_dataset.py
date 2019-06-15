@@ -230,7 +230,7 @@ while stop == False:
       #  print(zero_pad(i, 6))
 
         i2c.stop()
-        time.sleep(0.1)
+        emptyBuffer(0.5, [camera_0, camera_6])
         s2, img0 = camera_0.read()
         s4, img6 = camera_6.read()
         i2c.openB1()
