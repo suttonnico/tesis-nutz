@@ -142,8 +142,12 @@ i = 0
 j = 0
 lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
 lcd.lcd_string("Nueces DER: " + str(j), lcd.LCD_LINE_2)
-flag  = False
+#flag  = False
 stop = False
+i2c.closeB1()
+i2c.closeA1()
+flag = True
+i2c.go()
 while stop == False:
     if GPIO.input(pin_parada) == GPIO.LOW:
         i2c.stop()
