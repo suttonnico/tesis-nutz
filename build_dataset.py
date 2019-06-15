@@ -130,7 +130,7 @@ trash, empty_BW6 = cv2.threshold(empty_gray6, th, 255, cv2.THRESH_BINARY)
 empty_BW = [empty_BW0, empty_BW2, empty_BW4, empty_BW6]
 cam_ind = choose_cameras([camera_0, camera_2, camera_4, camera_6], empty_BW, th)
 
-i2c.go()
+
 i = 0
 j = 0
 lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
