@@ -44,7 +44,7 @@ i2c.closeB2()
 def emptyBuffer(t,cams):
     start = time.time()
     N = len(cams)
-    while time.time()< t:
+    while time.time()-start< t:
         for i in range(N):
             cams[i].read()
 
