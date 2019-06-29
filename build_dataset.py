@@ -189,7 +189,6 @@ while stop == False:
     # print("diff4"+str(diff4.sum()))
     # print("diff6"+str(diff6.sum()))
     if (diff2.sum() > thr0 or diff4.sum() > thr0) and flag:
-        print("IN 1")
       #  print('foto0 :' + str(diff0.sum()))
       #  print('foto2 :' + str(diff2.sum()))
       #  print('foto4 :' + str(diff4.sum()))
@@ -204,6 +203,7 @@ while stop == False:
         img = cv2.resize(img, (4 * dif, 2 * dif))
 
         pred = my_cnn.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
+        print(pred)
         if pred == 1:
             i2c.closeA2()
         else:
@@ -231,7 +231,6 @@ while stop == False:
         i2c.go()
 
     if (diff0.sum() > thr2 or diff6.sum() > thr2) and flag:
-        print("IN 2")
       #  print('foto0 :' + str(diff0.sum()))
       #  print('foto2 :' + str(diff2.sum()))
       #  print('foto4 :' + str(diff4.sum()))
@@ -248,7 +247,7 @@ while stop == False:
 
 
         pred = my_cnn.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
-
+        print(pred)
         if pred == 1:
             i2c.closeB2()
         else:
