@@ -201,8 +201,6 @@ while stop == False:
         s2, img2 = camera_2.read()
         s4, img4 = camera_4.read()
         img = np.concatenate((img2, img4), axis=1)
-        # get_nut(img_org,id)
-        # img = get_nut(img)
         img = cv2.resize(img, (4 * dif, 2 * dif))
 
         pred = my_cnn.predict_classes(cv2.resize(img, (2 * dif, 4 * dif)).reshape([-1, 300, 300, 3]), batch_size=1)
@@ -245,6 +243,10 @@ while stop == False:
         s2, img0 = camera_0.read()
         s4, img6 = camera_6.read()
         dif = 150
+        img = np.concatenate((img0, img6), axis=1)
+        img = cv2.resize(img, (4 * dif, 2 * dif))
+
+
         pred = my_cnn.predict_classes(cv2.resize(img, (2 * dif, 4 * dif)).reshape([-1, 300, 300, 3]), batch_size=1)
 
         if pred == 1:
