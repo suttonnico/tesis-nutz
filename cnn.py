@@ -1,7 +1,5 @@
 from keras import layers, models, optimizers
-import itertools
 import numpy as np
-import matplotlib.pylab as plt
 def cnn_sel(img_width=640, img_height=480):
     layer_C1 = 10
     layer_C2 = 20
