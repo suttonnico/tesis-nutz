@@ -205,7 +205,7 @@ while stop == False:
         # img = get_nut(img)
         img = cv2.resize(img, (4 * dif, 2 * dif))
 
-        pred = my_cnn.predict_classes(cv2.resize(img, (2 * dif, 2 * dif)).reshape([-1, 300, 300, 3]), batch_size=1)
+        pred = my_cnn.predict_classes(cv2.resize(img, (2 * dif, 4 * dif)).reshape([-1, 300, 300, 3]), batch_size=1)
         if pred == 1:
             i2c.closeA2()
         else:
