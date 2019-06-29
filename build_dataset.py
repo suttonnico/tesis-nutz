@@ -141,7 +141,7 @@ j = 0
 lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
 lcd.lcd_string("Nueces DER: " + str(j), lcd.LCD_LINE_2)
 sleep_time = 0.2
-sleep_time_2 = 0.1
+sleep_time_2 = 0.3
 
 #flag  = False
 stop = False
