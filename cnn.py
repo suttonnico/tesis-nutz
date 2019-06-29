@@ -1,5 +1,4 @@
 from keras import layers, models, optimizers
-import sklearn
 import itertools
 import numpy as np
 import matplotlib.pylab as plt
