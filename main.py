@@ -7,6 +7,9 @@ import shutil
 import lcd
 import cnn
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
+import keras
+from keras.models import load_model
+import numpy as np
 
 
 size = 150
@@ -14,6 +17,12 @@ W = 2*size
 H = 2*size
 
 
+
+model = load_model('model.h5')
+weights = model.get_weights()
+my_cnn = cnn.cnn(img_width=W, img_height=H)
+
+my_cnn.set_weights(weights)
 
 lcd.lcd_init()
 
@@ -193,16 +202,33 @@ while stop == False:
         if stop_motor == True:
             i2c.stop()
         emptyBuffer(sleep_time,[camera_2,camera_4])
+        start_cam = time.time()
         s2, img2 = camera_2.read()
         s4, img4 = camera_4.read()
-        i2c.openA1()
-        cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
-        cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
+        start_pred = time.time()
 
+        img = np.concatenate((img2, img4), axis=1)
+        img = cv2.resize(img, (4 * dif, 2 * dif))
+
+        pred = my_cnn.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
+        stop_pred = time.time()
+        print('Tiempo cámara + predicción:'+str(stop_pred-start_cam))
+        print('Tiempo cámara + predicción:' + str(start_pred - start_cam))
+        print('Tiempo predicción:' + str(stop_pred - start_pred))
+        print(pred)
+        if pred == 1:
+            i2c.closeA2()
+        else:
+            i2c.openA2()
+        i2c.openA1()
         emptyBuffer(sleep_time_2, [camera_2, camera_4])
 
         # cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
+        cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
+        cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
         # cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
+        start = time.time()
+        i2c.closeA1()
         i = i + 1
         i2c.closeA1()
         lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
@@ -223,12 +249,29 @@ while stop == False:
         s2, img0 = camera_0.read()
         s4, img6 = camera_6.read()
         dif = 150
-        i2c.openB1()
+        start_pred = time.time()
 
-        cv2.imwrite('data/nuez0_' + zero_pad(j, 6) + '.png', img0)
-        cv2.imwrite('data/nuez6_' + zero_pad(j, 6) + '.png', img6)
+        img = np.concatenate((img0, img6), axis=1)
+        img = cv2.resize(img, (4 * dif, 2 * dif))
+        pred = my_cnn.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
+        stop_pred = time.time()
+        print('Tiempo cámara + predicción:' + str(stop_pred - start_cam))
+        print('Tiempo cámara + predicción:' + str(start_pred - start_cam))
+        print('Tiempo predicción:' + str(stop_pred - start_pred))
+
+        print(pred)
+        if pred == 1:
+            i2c.closeB2()
+        else:
+            i2c.openB2()
+        i2c.openB1()
         emptyBuffer(sleep_time_2, [camera_0, camera_6])
 
+        cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
+        # cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
+        # cv2.imwrite('data/nuez4_' + zero_pad(i, 6) + '.png', img4)
+        cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
+        start = time.time()
         i2c.closeB1()
 
         j = j + 1
