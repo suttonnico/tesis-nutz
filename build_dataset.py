@@ -140,15 +140,15 @@ i = 0
 j = 0
 lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
 lcd.lcd_string("Nueces DER: " + str(j), lcd.LCD_LINE_2)
-sleep_time = 0.2
-sleep_time_2 = 0.3
+sleep_time = 0.4
+sleep_time_2 = 0.4
 
 #flag  = False
 stop = False
 i2c.closeB1()
 i2c.closeA1()
 flag = False
-stop_motor = False
+stop_motor = True
 while stop == False:
     if GPIO.input(pin_parada) == GPIO.LOW:
         i2c.stop()
@@ -202,15 +202,19 @@ while stop == False:
         if stop_motor == True:
             i2c.stop()
         emptyBuffer(sleep_time,[camera_2,camera_4])
-        start_pred = time.time()
+        start_cam = time.time()
         s2, img2 = camera_2.read()
         s4, img4 = camera_4.read()
+        start_pred = time.time()
+
         img = np.concatenate((img2, img4), axis=1)
         img = cv2.resize(img, (4 * dif, 2 * dif))
 
         pred = my_cnn.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
         stop_pred = time.time()
-        print(stop_pred-start_pred)
+        print('Tiempo cámara + predicción:'+str(stop_pred-start_cam))
+        print('Tiempo cámara + predicción:' + str(start_pred - start_cam))
+        print('Tiempo predicción:' + str(stop_pred - start_pred))
         print(pred)
         if pred == 1:
             i2c.closeA2()
@@ -241,17 +245,20 @@ while stop == False:
         if stop_motor == True:
             i2c.stop()
         emptyBuffer(sleep_time, [camera_0, camera_6])
-        start_pred = time.time()
+        start_cam = time.time()
         s2, img0 = camera_0.read()
         s4, img6 = camera_6.read()
         dif = 150
+        start_pred = time.time()
+
         img = np.concatenate((img0, img6), axis=1)
         img = cv2.resize(img, (4 * dif, 2 * dif))
-
-
         pred = my_cnn.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
         stop_pred = time.time()
-        print(stop_pred - start_pred)
+        print('Tiempo cámara + predicción:' + str(stop_pred - start_cam))
+        print('Tiempo cámara + predicción:' + str(start_pred - start_cam))
+        print('Tiempo predicción:' + str(stop_pred - start_pred))
+
         print(pred)
         if pred == 1:
             i2c.closeB2()
