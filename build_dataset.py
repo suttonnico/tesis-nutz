@@ -145,8 +145,7 @@ sleep_time = 0.4
 stop = False
 i2c.closeB1()
 i2c.closeA1()
-flag = True
-i2c.go()
+flag = False
 while stop == False:
     if GPIO.input(pin_parada) == GPIO.LOW:
         i2c.stop()
