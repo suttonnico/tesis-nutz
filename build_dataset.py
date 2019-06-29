@@ -141,11 +141,14 @@ j = 0
 lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
 lcd.lcd_string("Nueces DER: " + str(j), lcd.LCD_LINE_2)
 sleep_time = 0.4
+sleep_time_2 = 0.1
+
 #flag  = False
 stop = False
 i2c.closeB1()
 i2c.closeA1()
 flag = False
+stop_motor = False
 while stop == False:
     if GPIO.input(pin_parada) == GPIO.LOW:
         i2c.stop()
@@ -182,6 +185,7 @@ while stop == False:
     diff2 = empty_BW[cam_ind[1]] - img_BW2
     diff4 = empty_BW[cam_ind[2]] - img_BW4
     diff6 = empty_BW[cam_ind[3]] - img_BW6
+
     thr2 = 1800000
     thr0 = 1800000
     # print("diff0"+str(diff0.sum()))
@@ -195,21 +199,25 @@ while stop == False:
       #  print('foto6 :' + str(diff6.sum()))
       #  print(zero_pad(i, 6))
         dif = 150
-        i2c.stop()
+        if stop_motor == True:
+            i2c.stop()
         emptyBuffer(sleep_time,[camera_2,camera_4])
+        start_pred = time.time()
         s2, img2 = camera_2.read()
         s4, img4 = camera_4.read()
         img = np.concatenate((img2, img4), axis=1)
         img = cv2.resize(img, (4 * dif, 2 * dif))
 
         pred = my_cnn.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
+        stop_pred = time.time()
+        print(stop_pred-start_pred)
         print(pred)
         if pred == 1:
             i2c.closeA2()
         else:
             i2c.openA2()
         i2c.openA1()
-        time.sleep(0.4)
+        emptyBuffer(sleep_time_2, [camera_2, camera_4])
 
         # cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
         cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
@@ -217,18 +225,12 @@ while stop == False:
         # cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
         start = time.time()
         i2c.closeA1()
-
-        while time.time() - start < 0.4:
-            #    s0, img0 = camera_0.read()
-            s2, img2 = camera_2.read()
-            s4, img4 = camera_4.read()
-        #   s6, img6 = camera_6.read()
         i = i + 1
         i2c.closeA1()
         lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
         lcd.lcd_string("Nueces DER: " + str(j), lcd.LCD_LINE_2)
-
-        i2c.go()
+        if stop_motor == True:
+            i2c.go()
 
     if (diff0.sum() > thr2 or diff6.sum() > thr2) and flag:
       #  print('foto0 :' + str(diff0.sum()))
@@ -236,9 +238,10 @@ while stop == False:
       #  print('foto4 :' + str(diff4.sum()))
       #  print('foto6 :' + str(diff6.sum()))
       #  print(zero_pad(i, 6))
-
-        i2c.stop()
+        if stop_motor == True:
+            i2c.stop()
         emptyBuffer(sleep_time, [camera_0, camera_6])
+        start_pred = time.time()
         s2, img0 = camera_0.read()
         s4, img6 = camera_6.read()
         dif = 150
@@ -247,13 +250,15 @@ while stop == False:
 
 
         pred = my_cnn.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
+        stop_pred = time.time()
+        print(stop_pred - start_pred)
         print(pred)
         if pred == 1:
             i2c.closeB2()
         else:
             i2c.openB2()
         i2c.openB1()
-        time.sleep(0.4)
+        emptyBuffer(sleep_time_2, [camera_0, camera_6])
 
         cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
         # cv2.imwrite('data/nuez2_' + zero_pad(i, 6) + '.png', img2)
@@ -262,14 +267,10 @@ while stop == False:
         start = time.time()
         i2c.closeB1()
 
-        while time.time() - start < 0.4:
-            s0, img0 = camera_0.read()
-            # s2, img2 = camera_2.read()
-            # s4, img4 = camera_4.read()
-            s6, img6 = camera_6.read()
         j = j + 1
         lcd.lcd_string("Nueces IZQ: " + str(i), lcd.LCD_LINE_1)
         lcd.lcd_string("Nueces DER: " + str(j), lcd.LCD_LINE_2)
-        i2c.go()
+        if stop_motor == True:
+            i2c.go()
 
 exit()
