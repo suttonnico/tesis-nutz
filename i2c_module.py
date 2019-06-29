@@ -46,3 +46,6 @@ def openB1():
 
 def closeB2():
     bus.write_byte(addr_arduino, ord('y'))
+
+def openB2():
+    bus.write_byte(addr_arduino, ord('Y'))

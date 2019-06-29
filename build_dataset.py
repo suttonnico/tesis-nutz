@@ -5,8 +5,24 @@ import glob
 import time
 import shutil
 import lcd
+import cnn
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
+import keras
+from keras.models import load_model
+import numpy as np
 
+
+size = 150
+W = 2*size
+H = 2*size
+
+
+
+model = load_model('model.h5')
+weights = model.get_weights()
+my_cnn = cnn.cnn(img_width=W, img_height=H)
+
+my_cnn.set_weights(weights)
 
 lcd.lcd_init()
 
@@ -48,8 +64,7 @@ def emptyBuffer(t,cams):
         for i in range(N):
             cams[i].read()
 
-# os.remove('data')
-# os.mkdir('/data')
+
 def zero_pad(x, n):
     for i in range(1, 5):
         if x < 10 ** i:
@@ -77,23 +92,6 @@ def choose_cameras(cams, empty_bw, bw_threshold):
     #return out
 
 
-"""
-nut_dir = 'data/'
-class camera_man:
-    i = 0
-    def __init__(self,i):
-        self.i = i
-    def shoot(self):
-        s, img_0 = cam_0.read()
-        s, img_1 = cam_1.read()
-        s, img_2 = cam_2.read()
-        s, img_3 = cam_3.read()
-
-        cv2.imwrite('data/recinto1_L/nuez_' + zero_pad(self.i, 6) + '.png', img_1)
-        cv2.imwrite('data/recinto1_R/nuez_' + zero_pad(self.i, 6) + '.png', img_2)
-        self.i = self.i +1
-
-"""
 
 camera_0 = cv2.VideoCapture(0)
 camera_0.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
@@ -198,12 +196,21 @@ while stop == False:
       #  print('foto4 :' + str(diff4.sum()))
       #  print('foto6 :' + str(diff6.sum()))
       #  print(zero_pad(i, 6))
-
+        dif = 150
         i2c.stop()
         emptyBuffer(sleep_time,[camera_2,camera_4])
         s2, img2 = camera_2.read()
         s4, img4 = camera_4.read()
+        img = np.concatenate((img2, img4), axis=1)
+        # get_nut(img_org,id)
+        # img = get_nut(img)
+        img = cv2.resize(img, (4 * dif, 2 * dif))
 
+        pred = my_cnn.predict_classes(cv2.resize(img, (2 * dif, 2 * dif)).reshape([-1, 300, 300, 3]), batch_size=1)
+        if pred == 1:
+            i2c.closeA2()
+        else:
+            i2c.openA2()
         i2c.openA1()
         time.sleep(0.4)
 
@@ -238,6 +245,10 @@ while stop == False:
         emptyBuffer(sleep_time, [camera_0, camera_6])
         s2, img0 = camera_0.read()
         s4, img6 = camera_6.read()
+        if pred == 1:
+            i2c.closeB2()
+        else:
+            i2c.openB2()
         i2c.openB1()
         time.sleep(0.4)
 
