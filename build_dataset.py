@@ -201,6 +201,7 @@ while stop == False:
 
         emptyBuffer(sleep_time_2, [camera_2, camera_4])
 
+
         # cv2.imwrite('data/nuez0_' + zero_pad(i, 6) + '.png', img0)
         # cv2.imwrite('data/nuez6_' + zero_pad(i, 6) + '.png', img6)
         i = i + 1
