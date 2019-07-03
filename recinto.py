@@ -20,7 +20,7 @@ class Recinto:
     stop = {}
     go = {}
     counter = 0
-    thNut = 1800000
+    thNut = 3000000
     empty_buffer_time = 0.4
     open_sleep_time = 0.4
     stop_motor = True
@@ -70,6 +70,8 @@ class Recinto:
         diff1 = self.empty1 - img_BW1
         diff2 = self.empty2 - img_BW2
         if diff1.sum() > self.thNut or diff2.sum() > self.thNut:
+            print(diff1.sum())
+            print(diff1.sum())
             self.classify_nut()
 
     def clear_buffer(self):
