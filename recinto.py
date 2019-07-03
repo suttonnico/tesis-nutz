@@ -55,6 +55,9 @@ class Recinto:
         self.clear_buffer()
         s, empty1 = self.camera1.read()
         s, empty2 = self.camera2.read()
+        cv2.imwrite('data/empty' + str(self.ind_camera1) + '.png', empty1)
+        cv2.imwrite('data/empty' + str(self.ind_camera2) + '.png', empty2)
+
         th = 140
         empty_gray1 = cv2.cvtColor(empty1, cv2.COLOR_BGR2GRAY)
         trash, self.empty1 = cv2.threshold(empty_gray1, th, 255, cv2.THRESH_BINARY)

@@ -79,6 +79,7 @@ i2c.closeB1()
 i2c.closeA1()
 flag = False
 stop_motor = True
+motor = False
 while stop == False:
     if GPIO.input(pin_parada) == GPIO.LOW:
         i2c.stop()
@@ -86,6 +87,7 @@ while stop == False:
         i2c.openA1()
         flag = False
         time.sleep(1)
+        motor = False
         if GPIO.input(pin_parada) == GPIO.LOW:
             stop = True
             print("Good bye")
@@ -95,10 +97,12 @@ while stop == False:
         i2c.closeA1()
         time.sleep(1)
         flag = True
+        motor = True
         i2c.go()
         print("GO")
     time.sleep(0.1)
-    recinto1.take_photos()
-    recinto2.take_photos()
+    if motor:
+        recinto1.take_photos()
+        recinto2.take_photos()
 
 exit()
