@@ -5,7 +5,7 @@ import glob
 import time
 import shutil
 import lcd
-import cnn
+#import cnn
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 from recinto import Recinto
 
