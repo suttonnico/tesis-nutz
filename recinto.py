@@ -17,6 +17,7 @@ class Recinto:
     emtpy2 = {}
     open = {}
     close = {}
+    lcd_line = {}
     stop = {}
     go = {}
     counter = 0
@@ -30,7 +31,8 @@ class Recinto:
             if x < 10 ** i:
                 return (n - i) * '0' + str(x)
 
-    def __init__(self, ind_camera1, ind_camera2, open, close,stop,go):
+    def __init__(self, ind_camera1, ind_camera2, open, close,stop,go,lcd_line):
+        self.lcd_line = lcd_line
         self.counter = 0
         self.ind_camera1 = ind_camera1
         self.ind_camera2 = ind_camera2
@@ -92,5 +94,10 @@ class Recinto:
         time.sleep(self.open_sleep_time)
         self.close()
         self.clear_buffer()
+        if self.stop_motor:
+            self.go()
+        self.counter += 1
+        lcd.lcd_string("Nueces IZQ: " + str(self.counter), self.lcd_line)
+
 
 
