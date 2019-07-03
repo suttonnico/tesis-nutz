@@ -49,6 +49,7 @@ class Recinto:
         open()
         time.sleep(1)
         close()
+        self.clear_buffer()
         s, empty1 = self.camera1.read()
         s, empty2 = self.camera2.read()
         th = 140
