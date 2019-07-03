@@ -25,7 +25,7 @@ class Recinto:
     open_sleep_time = 0.4
     stop_motor = True
 
-    def zero_pad(x, n):
+    def zero_pad(self,x, n):
         for i in range(1, 5):
             if x < 10 ** i:
                 return (n - i) * '0' + str(x)
