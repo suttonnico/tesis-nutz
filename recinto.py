@@ -31,7 +31,8 @@ class Recinto:
             if x < 10 ** i:
                 return (n - i) * '0' + str(x)
 
-    def __init__(self, ind_camera1, ind_camera2, open, close,stop,go,lcd_line):
+    def __init__(self, ind_camera1, ind_camera2, open, close,stop,go,lcd_line,thNut):
+        self.thNut = thNut
         self.lcd_line = lcd_line
         self.counter = 0
         self.ind_camera1 = ind_camera1
