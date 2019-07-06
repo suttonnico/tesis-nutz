@@ -5,10 +5,10 @@ import glob
 import time
 import shutil
 import lcd
-import cnn
+#import cnn
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 from recinto import Recinto
-from keras.models import load_model
+#from keras.models import load_model
 import threading
 
 size = 150
@@ -16,11 +16,11 @@ W = 2*size
 H = 2*size
 
 
-model = load_model('model.h5')
-weights = model.get_weights()
-my_cnn = cnn.cnn(img_width=W, img_height=H)
-
-my_cnn.set_weights(weights)
+#model = load_model('model.h5')
+#weights = model.get_weights()
+#my_cnn = cnn.cnn(img_width=W, img_height=H)
+#my_cnn.set_weights(weights)
+my_cnn = []
 
 
 
