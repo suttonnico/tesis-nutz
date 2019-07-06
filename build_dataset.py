@@ -76,8 +76,7 @@ try:
     recinto2 = Recinto(0,6,i2c.openB1,i2c.closeB1,i2c.stop,i2c.go,lcd.LCD_LINE_2,1500000,my_cnn,size,i2c.openB2(),i2c.closeB2())
 except:
     exit(666)
-thread1 = threading.Thread(target = recinto1.take_photos())
-thread2 = threading.Thread(target = recinto2.take_photos())
+
 #flag  = False
 stop = False
 i2c.closeB1()
@@ -85,6 +84,8 @@ i2c.closeA1()
 flag = False
 stop_motor = True
 motor = False
+thread1 = threading.Thread(target = recinto1.take_photos())
+thread2 = threading.Thread(target = recinto2.take_photos())
 while stop == False:
     if GPIO.input(pin_parada) == GPIO.LOW:
         i2c.stop()
@@ -108,8 +109,10 @@ while stop == False:
     time.sleep(0.1)
     if motor:
         if thread1.is_alive() == False:
+            thread1 = threading.Thread(target=recinto1.take_photos())
             thread1.start()
         if thread2.is_alive() == False:
+            thread2 = threading.Thread(target=recinto2.take_photos())
             thread2.start()
 
 exit()
