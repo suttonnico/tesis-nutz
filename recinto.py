@@ -6,9 +6,11 @@ import time
 import shutil
 import lcd
 import cnn
+import numpy as np
 
 
 class Recinto:
+    model = {}
     camera1 = {}
     camera2 = {}
     ind_camera1 = {}
@@ -20,6 +22,9 @@ class Recinto:
     lcd_line = {}
     stop = {}
     go = {}
+    size = {}
+    good = {}
+    bad = {}
     counter = 0
     thNut = 3000000
     empty_buffer_time = 0.4
@@ -31,7 +36,11 @@ class Recinto:
             if x < 10 ** i:
                 return (n - i) * '0' + str(x)
 
-    def __init__(self, ind_camera1, ind_camera2, open, close,stop,go,lcd_line,thNut):
+    def __init__(self, ind_camera1, ind_camera2, open, close,stop,go,lcd_line,thNut, model,size,bad,good):
+        self.bad = bad
+        self.good = good
+        self.size = size
+        self.model = model
         self.thNut = thNut
         self.lcd_line = lcd_line
         self.counter = 0
@@ -102,6 +111,15 @@ class Recinto:
         self.clear_buffer()
         s1, img1 = self.camera1.read()
         s2, img2 = self.camera2.read()
+        img = np.concatenate((img1, img2), axis=1)
+        img = cv2.resize(img, (4 * self.size, 2 * self.size))
+        pred = self.model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
+        if pred == 1:
+            print("BAD :(")
+            self.bad()
+        else:
+            print("GOOD :)")
+            self.good()
         self.open()
         cv2.imwrite('data/nuez'+str(self.ind_camera1)+'_' + self.zero_pad(self.counter, 6) + '.png', img1)
         cv2.imwrite('data/nuez'+str(self.ind_camera2)+'_' + self.zero_pad(self.counter, 6) + '.png', img2)
