@@ -106,7 +106,13 @@ while stop == False:
         print("GO")
     time.sleep(0.1)
     if motor:
-        thread1.start()
-        thread2.start()
+        try:
+            thread1.start()
+        except:
+            print('Thread 1 still going')
+        try:
+            thread2.start()
+        except:
+            print('Thread 1 still going')
 
 exit()
