@@ -106,14 +106,10 @@ while stop == False:
     time.sleep(0.1)
     if motor:
         if thread1.is_alive() == False:
-            print("Start thread 1")
-            thread1 = threading.Thread(target=recinto1.take_photos())
+            thread1 = threading.Thread(target=recinto1.take_photos)
             thread1.start()
-            print("Thread 1 created")
         if thread2.is_alive() == False:
-            print("Start thread 2")
-            thread2 = threading.Thread(target=recinto2.take_photos())
+            thread2 = threading.Thread(target=recinto2.take_photos)
             thread2.start()
-            print("Thread 2 created")
 
 exit()
