@@ -5,7 +5,7 @@ import glob
 import time
 import shutil
 import lcd
-import cnn
+#import cnn
 import numpy as np
 
 
