@@ -9,6 +9,7 @@ import cnn
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 from recinto import Recinto
 from keras.models import load_model
+import threading
 
 size = 150
 W = 2*size
@@ -73,6 +74,9 @@ def choose_cameras(cams, empty_bw, bw_threshold):
 
 recinto1 = Recinto(2,4,i2c.openA1,i2c.closeA1,i2c.stop,i2c.go,lcd.LCD_LINE_1,1800000,my_cnn,size,i2c.openA2(),i2c.closeA2())
 recinto2 = Recinto(0,6,i2c.openB1,i2c.closeB1,i2c.stop,i2c.go,lcd.LCD_LINE_2,1500000,my_cnn,size,i2c.openB2(),i2c.closeB2())
+
+thread1 = threading.Thread(target = recinto1.take_photos())
+thread2 = threading.Thread(target = recinto2.take_photos())
 #flag  = False
 stop = False
 i2c.closeB1()
@@ -102,7 +106,7 @@ while stop == False:
         print("GO")
     time.sleep(0.1)
     if motor:
-        recinto1.take_photos()
-        recinto2.take_photos()
+        thread1.start()
+        thread2.start()
 
 exit()
