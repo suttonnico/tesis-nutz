@@ -130,6 +130,6 @@ class Recinto:
             self.go()
         self.counter += 1
         lcd.lcd_string("Nueces IZQ: " + str(self.counter), self.lcd_line)
-
+        print('END thread')
 
 
