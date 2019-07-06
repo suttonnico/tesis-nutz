@@ -114,6 +114,6 @@ while stop == False:
             print("Start thread 2")
             thread2 = threading.Thread(target=recinto2.take_photos())
             thread2.start()
-            print("Thread 1 created")
+            print("Thread 2 created")
 
 exit()
