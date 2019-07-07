@@ -131,6 +131,7 @@ class Recinto:
             size2 = size_classification.findRadius(img1, self.empty1)
             print("pixeles camara 1:"+str(size1))
             print("pixeles camara 2:"+str(size2))
+            print("Diametro: "+str(size_classification.sizes2rad(size1,size2,120)))
             self.good()
         self.open()
         cv2.imwrite('data/nuez'+str(self.ind_camera1)+'_' + self.zero_pad(self.counter, 6) + '.png', img1)

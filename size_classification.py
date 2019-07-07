@@ -5,8 +5,8 @@ import math
 
 
 def sizes2rad(size1,size2,T):
-    tv = 1
-    L = 10
+    tv = 0.51
+    L = 20
     t1 = math.asin(size1 / T * math.sin(tv))
     t2 = math.asin(size2 / T * math.sin(tv))
     h1 = L / (math.cos(t1)+math.sin(t1)*math.tan(t2))
