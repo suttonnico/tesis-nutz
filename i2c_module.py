@@ -50,14 +50,44 @@ def closeB2():
 def openB2():
     bus.write_byte(addr_arduino, ord('Y'))
 
+
 def openB3():
     bus.write_byte(addr_arduino, ord('Z'))
+
 
 def openA3():
     bus.write_byte(addr_arduino, ord('W'))
 
+
 def closeB3():
     bus.write_byte(addr_arduino, ord('z'))
 
+
 def closeA3():
     bus.write_byte(addr_arduino, ord('w'))
+
+
+def leftBig():
+    bus.write_byte(addr_arduino, ord('A'))
+
+
+def leftSmall():
+    bus.write_byte(addr_arduino, ord('B'))
+
+
+def leftBad():
+    bus.write_byte(addr_arduino, ord('C'))
+
+
+def rightBig():
+    bus.write_byte(addr_arduino, ord('D'))
+
+
+def rightSmall():
+    bus.write_byte(addr_arduino, ord('E'))
+
+
+def rightBad():
+    bus.write_byte(addr_arduino, ord('F'))
+
+
