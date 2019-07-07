@@ -1,15 +1,24 @@
 import numpy as np
 import cv2
 from skimage.feature import canny
+import math
+
+
+def sizes2rad(size1,size2,T):
+    tv = 1
+    L = 10
+    t1 = math.asin(size1 / T * math.sin(tv))
+    t2 = math.asin(size2 / T * math.sin(tv))
+    h1 = L / (math.cos(t1)+math.sin(t1)*math.tan(t2))
+    return math.sin(t1)*h1
+
 
 def addUp(x,dif):
-    #print('MAT')
-    #print(x)
     a = np.average(x[0:dif,0:dif,0])
     b = np.average(x[0:dif,0:dif,1])
     c = np.average(x[0:dif, 0:dif,2])
-    #print(a,b,c)
     return [a,b,c]
+
 
 def diffInColor(x,y):
     x= [int(x[0]),int(x[1]),int(x[2])]

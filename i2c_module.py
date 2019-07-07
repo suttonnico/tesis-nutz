@@ -49,3 +49,15 @@ def closeB2():
 
 def openB2():
     bus.write_byte(addr_arduino, ord('Y'))
+
+def openB3():
+    bus.write_byte(addr_arduino, ord('Z'))
+
+def openA3():
+    bus.write_byte(addr_arduino, ord('W'))
+
+def closeB3():
+    bus.write_byte(addr_arduino, ord('z'))
+
+def closeA3():
+    bus.write_byte(addr_arduino, ord('w'))
