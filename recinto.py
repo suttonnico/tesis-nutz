@@ -7,7 +7,7 @@ import shutil
 import lcd
 #import cnn
 import numpy as np
-
+import size_classification
 
 class Recinto:
     model = {}
@@ -46,12 +46,16 @@ class Recinto:
         self.counter = 0
         self.ind_camera1 = ind_camera1
         self.ind_camera2 = ind_camera2
-        self.camera1 = cv2.VideoCapture(ind_camera1)
-        self.camera1.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
-        self.camera1.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
-        self.camera2 = cv2.VideoCapture(ind_camera2)
-        self.camera2.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
-        self.camera2.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
+        try:
+            self.camera1 = cv2.VideoCapture(ind_camera1)
+            self.camera1.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
+            self.camera1.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
+            self.camera2 = cv2.VideoCapture(ind_camera2)
+            self.camera2.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
+            self.camera2.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
+        except:
+            print('camera error, please reboot')
+            exit(666)
         self.open = open
         self.close = close
         self.stop = stop
@@ -85,8 +89,12 @@ class Recinto:
 
     def take_photos(self):
         th = 140
-        s, img1 = self.camera1.read()
-        s, img2 = self.camera2.read()
+        try:
+            s, img1 = self.camera1.read()
+            s, img2 = self.camera2.read()
+        except:
+            print('camera error please reboot')
+            exit(666)
         img_gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
         trash, img_BW1 = cv2.threshold(img_gray1, th, 255, cv2.THRESH_BINARY)
         img_gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
@@ -119,6 +127,10 @@ class Recinto:
             self.bad()
         else:
             print("GOOD :)")
+            size1 = size_classification.findRadius(img1,self.empty1)
+            size2 = size_classification.findRadius(img1, self.empty1)
+            print("pixeles camara 1:"+str(size1))
+            print("pixeles camara 2:"+str(size2))
             self.good()
         self.open()
         cv2.imwrite('data/nuez'+str(self.ind_camera1)+'_' + self.zero_pad(self.counter, 6) + '.png', img1)

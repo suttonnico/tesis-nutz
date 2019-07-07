@@ -83,6 +83,7 @@ stop_motor = True
 motor = False
 thread1 = threading.Thread(target = recinto1.take_photos())
 thread2 = threading.Thread(target = recinto2.take_photos())
+print("LISTO")
 while stop == False:
     if GPIO.input(pin_parada) == GPIO.LOW:
         i2c.stop()
