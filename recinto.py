@@ -137,7 +137,7 @@ class Recinto:
             print("pixeles camara 2:"+str(size2))
             diametro = round(size_classification.sizes2rad(size1,size2,120),2)
             print("Diametro: "+str(diametro))
-            lcd.lcd_string("Diametro de nuez: " + str(diametro), 0xD4)
+            lcd.lcd_string("Calibre: " + str(diametro), 0xD4)
             self.good()
         self.open()
         cv2.imwrite('data/nuez'+str(self.ind_camera1)+'_' + self.zero_pad(self.counter, 6) + '.png', img1)
