@@ -92,13 +92,12 @@ def findRadius(img, empty):
         # diff =vdiff(diff_pre[:,:,0],diff_pre[:,:,1],diff_pre[:,:,2])
         diff = cv2.resize(diff, (120, 160))
     else:
-    # print(diff)
          for i in range(int(N / step)):
             for j in range(int(M / step)):
                 diff[i * step:i * step + step, j * step:j * step + step] = diffInColor(
                     addUp(img[i * step:i * step + step, j * step:j * step + step], step),
                     addUp(empty[i * step:i * step + step, j * step:j * step + step], step))
-        print("tiempo en la clasifiacion por imagenes: " + str(time.time() - start))
+    print("tiempo en la clasifiacion por imagenes: " + str(time.time() - start))
     its = 3
     diff = cv2.dilate(diff, kernel, iterations=its)
     diff = cv2.erode(diff, None, iterations=its)
