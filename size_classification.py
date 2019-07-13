@@ -47,7 +47,7 @@ def findRadius(img,empty):
     kernel = np.ones((5, 5), np.uint8)
     [N, M, D] = np.shape(img)
     diff = np.zeros([N, M])
-    step = 1
+    step = 4
     for i in range(int(N / step)):
         for j in range(int(M / step)):
             diff[i * step:i * step + step, j * step:j * step + step] = diffInColor(
@@ -65,7 +65,7 @@ def findRadius(img,empty):
     y_max = np.max(y_edges)
     x_min = np.min(x_edges)
     x_max = np.max(x_edges)
-    cv2.rectangle(img, (x_min, y_min), (x_max, y_max), (0, 255, 0), 3)
+    #cv2.rectangle(img, (x_min, y_min), (x_max, y_max), (0, 255, 0), 3)
 
 
     return y_max-y_min

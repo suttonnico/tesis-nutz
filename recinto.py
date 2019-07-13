@@ -132,7 +132,7 @@ class Recinto:
         else:
             print("GOOD :)")
             size1 = size_classification.findRadius(img1,self.empty1_org)
-            size2 = size_classification.findRadius(img1, self.empty1_org)
+            size2 = size_classification.findRadius(img2, self.empty2_org)
             print("pixeles camara 1:"+str(size1))
             print("pixeles camara 2:"+str(size2))
             print("Diametro: "+str(size_classification.sizes2rad(size1,size2,120)))
