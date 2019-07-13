@@ -75,6 +75,7 @@ def findRadius(img,empty):
     #        diff[i * step:i * step + step, j * step:j * step + step] = diffInColor(
     #            addUp(img[i * step:i * step + step, j * step:j * step + step], step),
     #            addUp(empty[i * step:i * step + step, j * step:j * step + step], step))
+    print("tiempo en la clasifiacion por imagenes: " + str(time.time() - start))
     its = 3
     diff = cv2.dilate(diff, kernel, iterations=its)
     diff = cv2.erode(diff, None, iterations=its)
@@ -88,6 +89,6 @@ def findRadius(img,empty):
     x_min = np.min(x_edges)
     x_max = np.max(x_edges)
     #cv2.rectangle(img, (x_min, y_min), (x_max, y_max), (0, 255, 0), 3)
-    print("tiempo en la clasifiacion por imagenes: "+str(time.time()-start))
+
 
     return y_max-y_min
