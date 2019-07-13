@@ -2,10 +2,10 @@ import numpy as np
 import cv2
 from skimage.feature import canny
 import math
-
+import time
 
 def sizes2rad(size1,size2,T):
-    tv = 0.51
+    tv = 0.55 #0.51 medido
     L = 20
     print(T)
     t1 = math.atan(size1 / T * math.tan(tv))
@@ -44,10 +44,11 @@ def diffInColor(x,y):
     return dif
 
 def findRadius(img,empty):
+    start=time.time()
     kernel = np.ones((5, 5), np.uint8)
     [N, M, D] = np.shape(img)
     diff = np.zeros([N, M])
-    step = 1
+    step = 10
     for i in range(int(N / step)):
         for j in range(int(M / step)):
             diff[i * step:i * step + step, j * step:j * step + step] = diffInColor(
@@ -66,6 +67,6 @@ def findRadius(img,empty):
     x_min = np.min(x_edges)
     x_max = np.max(x_edges)
     #cv2.rectangle(img, (x_min, y_min), (x_max, y_max), (0, 255, 0), 3)
-
+    print("tiempo en la clasifiacion por imagenes: "+str(time.time()-start))
 
     return y_max-y_min
