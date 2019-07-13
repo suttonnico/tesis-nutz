@@ -68,7 +68,7 @@ def findRadius(img,empty):
     empty_small = cv2.resize(empty,(int(120/div), int(160/div)))
     diff_pre = np.abs(img_small-empty_small)
     vdiff = np.vectorize(diffInColor2)
-    diff =diffInColor2(diff_pre[:,:,0],diff_pre[:,:,1],diff_pre[:,:,2])
+    diff =vdiff(diff_pre[:,:,0],diff_pre[:,:,1],diff_pre[:,:,2])
     #for i in range(int(N / step)):
     #    for j in range(int(M / step)):
     #        diff[i * step:i * step + step, j * step:j * step + step] = diffInColor(
