@@ -5,7 +5,7 @@ import math
 import time
 
 def sizes2rad(size1,size2,T):
-    tv = 0.55 #0.51 medido
+    tv = 0.51
     L = 20
     print(T)
     t1 = math.atan(size1 / T * math.tan(tv))
