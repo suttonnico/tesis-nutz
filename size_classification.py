@@ -44,6 +44,9 @@ def diffInColor(x,y):
     return dif
 
 def diffInColor2(R,G,B):
+    R = int(R)
+    G = int(G)
+    B = int(B)
     dif = (R + G + B)/3
     th = 40
 
