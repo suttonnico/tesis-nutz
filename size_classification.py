@@ -78,6 +78,7 @@ def findRadius(img, empty):
     RB = np.abs(R - B)
     GB = np.abs(G - B)
     diff = (R + G + B) / 3
+    diff_pre = diff * 0.01
     th = 40
     RG = RG > th
     RB = RB > th
@@ -85,7 +86,7 @@ def findRadius(img, empty):
     diff = np.multiply(diff, RG)
     diff = np.multiply(diff, RB)
     diff = np.multiply(diff, GB)
-    diff = np.clip(diff, 0, 255)
+    diff = np.clip(diff, 0, 255) + diff_pre
     # diff =vdiff(diff_pre[:,:,0],diff_pre[:,:,1],diff_pre[:,:,2])
     diff = cv2.resize(diff, (120, 160))
 
