@@ -113,4 +113,6 @@ while stop == False:
             thread2 = threading.Thread(target=recinto2.take_photos)
             thread2.start()
 
+
+
 exit()
