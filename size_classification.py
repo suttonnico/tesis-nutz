@@ -67,7 +67,7 @@ def findRadius(img, empty):
     diff = np.zeros([N, M])
     step = 10
 
-    if False :
+    if True :
         div = 5
         img_small = cv2.resize(img, (int(160 / div), int(120 / div))).astype(int)
         empty_small = cv2.resize(empty, (int(160 / div), int(120 / div))).astype(int)
