@@ -8,11 +8,11 @@ def sizes2rad(size1,size2,T):
     tv = 0.51
     L = 20
     print(T)
-    t1 = math.atan(size1 / T / math.tan(tv))
+    t1 = math.atan(size1 / T * math.tan(tv))
     print("tita 1:"+str(t1))
-    t2 = math.atan(size2 / T / math.tan(tv))
+    t2 = math.atan(size2 / T * math.tan(tv))
     print("tita 2:" + str(t2))
-    h1 = L / (math.cos(t1)+math.sin(t1)*math.tan(t2))
+    h1 = L / (math.cos(t1)+math.sin(t1)/math.tan(t2))
     return math.sin(t1)*h1
 
 
