@@ -47,7 +47,7 @@ def findRadius(img,empty):
     kernel = np.ones((5, 5), np.uint8)
     [N, M, D] = np.shape(img)
     diff = np.zeros([N, M])
-    step = 4
+    step = 1
     for i in range(int(N / step)):
         for j in range(int(M / step)):
             diff[i * step:i * step + step, j * step:j * step + step] = diffInColor(
