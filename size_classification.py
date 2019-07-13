@@ -7,8 +7,8 @@ import math
 def sizes2rad(size1,size2,T):
     tv = 0.51
     L = 20
-    t1 = math.asin(size1 / T * math.sin(tv))
-    t2 = math.asin(size2 / T * math.sin(tv))
+    t1 = math.atan(size1 / T * math.tan(tv))
+    t2 = math.atan(size2 / T * math.tan(tv))
     h1 = L / (math.cos(t1)+math.sin(t1)*math.tan(t2))
     return math.sin(t1)*h1
 

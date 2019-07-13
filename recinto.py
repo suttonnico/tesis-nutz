@@ -10,6 +10,8 @@ import numpy as np
 import size_classification
 
 class Recinto:
+    empty1_org = {}
+    empty2_org = {}
     model = {}
     camera1 = {}
     camera2 = {}
@@ -78,6 +80,8 @@ class Recinto:
         self.clear_buffer()
         s, empty1 = self.camera1.read()
         s, empty2 = self.camera2.read()
+        self.empty1_org = empty1
+        self.empty2_org = empty2
         cv2.imwrite('data/empty' + str(self.ind_camera1) + '.png', empty1)
         cv2.imwrite('data/empty' + str(self.ind_camera2) + '.png', empty2)
 
@@ -127,13 +131,11 @@ class Recinto:
             self.bad()
         else:
             print("GOOD :)")
-            """
-            size1 = size_classification.findRadius(img1,self.empty1)
-            size2 = size_classification.findRadius(img1, self.empty1)
+            size1 = size_classification.findRadius(img1,self.empty1_org)
+            size2 = size_classification.findRadius(img1, self.empty1_org)
             print("pixeles camara 1:"+str(size1))
             print("pixeles camara 2:"+str(size2))
             print("Diametro: "+str(size_classification.sizes2rad(size1,size2,120)))
-            """
             self.good()
         self.open()
         cv2.imwrite('data/nuez'+str(self.ind_camera1)+'_' + self.zero_pad(self.counter, 6) + '.png', img1)
