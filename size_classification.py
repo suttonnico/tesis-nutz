@@ -43,17 +43,34 @@ def diffInColor(x,y):
     dif = dif/255
     return dif
 
+def diffInColor2(R,G,B):
+    dif = (R + G + B)/3
+    th = 40
+
+    if (np.abs(R - G) < th) & (np.abs(R - B) < th) & (np.abs(G - B) < th):
+        dif = dif * 0.001
+    if dif > 255:
+        dif = 255
+    dif = dif / 255
+    return dif
+
 def findRadius(img,empty):
     start=time.time()
     kernel = np.ones((5, 5), np.uint8)
     [N, M, D] = np.shape(img)
     diff = np.zeros([N, M])
     step = 10
-    for i in range(int(N / step)):
-        for j in range(int(M / step)):
-            diff[i * step:i * step + step, j * step:j * step + step] = diffInColor(
-                addUp(img[i * step:i * step + step, j * step:j * step + step], step),
-                addUp(empty[i * step:i * step + step, j * step:j * step + step], step))
+    div = 5
+    img_small = cv2.resize(img, (int(120/div), int(160/div)))
+    empty_small = cv2.resize(empty,(int(120/div), int(160/div)))
+    diff_pre = np.abs(img_small-empty_small)
+    vdiff = np.vectorize(diffInColor2)
+    diff =vdiff(diff_pre[:,:,0],diff_pre[:,:,1],diff_pre[:,:,2])
+    #for i in range(int(N / step)):
+    #    for j in range(int(M / step)):
+    #        diff[i * step:i * step + step, j * step:j * step + step] = diffInColor(
+    #            addUp(img[i * step:i * step + step, j * step:j * step + step], step),
+    #            addUp(empty[i * step:i * step + step, j * step:j * step + step], step))
     its = 3
     diff = cv2.dilate(diff, kernel, iterations=its)
     diff = cv2.erode(diff, None, iterations=its)
