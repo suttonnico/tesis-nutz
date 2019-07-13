@@ -64,39 +64,41 @@ def findRadius(img, empty):
     start = time.time()
     kernel = np.ones((5, 5), np.uint8)
     [N, M, D] = np.shape(img)
-    # diff = np.zeros([N, M])
+    diff = np.zeros([N, M])
     step = 10
-    div = 5
-    img_small = cv2.resize(img, (int(160 / div), int(120 / div))).astype(int)
-    empty_small = cv2.resize(empty, (int(160 / div), int(120 / div))).astype(int)
-    diff_pre = np.absolute(img_small - empty_small)
 
-    R = diff_pre[:, :, 0]
-    G = diff_pre[:, :, 1]
-    B = diff_pre[:, :, 2]
-    RG = np.abs(R - G)
-    RB = np.abs(R - B)
-    GB = np.abs(G - B)
-    diff = (R + G + B) / 3
-    diff_pre = diff * 0.001
-    th = 40
-    RG = RG > th
-    RB = RB > th
-    GB = GB > th
-    diff = np.multiply(diff, RG)
-    diff = np.multiply(diff, RB)
-    diff = np.multiply(diff, GB)
-    diff = np.clip(diff, 0, 255) + diff_pre
-    # diff =vdiff(diff_pre[:,:,0],diff_pre[:,:,1],diff_pre[:,:,2])
-    diff = cv2.resize(diff, (120, 160))
+    if False :
+        div = 5
+        img_small = cv2.resize(img, (int(160 / div), int(120 / div))).astype(int)
+        empty_small = cv2.resize(empty, (int(160 / div), int(120 / div))).astype(int)
+        diff_pre = np.absolute(img_small - empty_small)
 
+        R = diff_pre[:, :, 0]
+        G = diff_pre[:, :, 1]
+        B = diff_pre[:, :, 2]
+        RG = np.abs(R - G)
+        RB = np.abs(R - B)
+        GB = np.abs(G - B)
+        diff = (R + G + B) / 3
+        diff_pre = diff * 0.001
+        th = 40
+        RG = RG > th
+        RB = RB > th
+        GB = GB > th
+        diff = np.multiply(diff, RG)
+        diff = np.multiply(diff, RB)
+        diff = np.multiply(diff, GB)
+        diff = np.clip(diff, 0, 255) + diff_pre
+        # diff =vdiff(diff_pre[:,:,0],diff_pre[:,:,1],diff_pre[:,:,2])
+        diff = cv2.resize(diff, (120, 160))
+    else:
     # print(diff)
-    # for i in range(int(N / step)):
-    #    for j in range(int(M / step)):
-    #        diff[i * step:i * step + step, j * step:j * step + step] = diffInColor(
-    #            addUp(img[i * step:i * step + step, j * step:j * step + step], step),
-    #            addUp(empty[i * step:i * step + step, j * step:j * step + step], step))
-    print("tiempo en la clasifiacion por imagenes: " + str(time.time() - start))
+         for i in range(int(N / step)):
+            for j in range(int(M / step)):
+                diff[i * step:i * step + step, j * step:j * step + step] = diffInColor(
+                    addUp(img[i * step:i * step + step, j * step:j * step + step], step),
+                    addUp(empty[i * step:i * step + step, j * step:j * step + step], step))
+        print("tiempo en la clasifiacion por imagenes: " + str(time.time() - start))
     its = 3
     diff = cv2.dilate(diff, kernel, iterations=its)
     diff = cv2.erode(diff, None, iterations=its)
