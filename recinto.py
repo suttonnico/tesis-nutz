@@ -125,7 +125,7 @@ class Recinto:
         s2, img2 = self.camera2.read()
         img = np.concatenate((img1, img2), axis=1)
         img = cv2.resize(img, (4 * self.size, 2 * self.size))
-        pred = 0#self.model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
+        pred = self.model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
         if pred == 1:
             print("BAD :(")
             self.bad()
