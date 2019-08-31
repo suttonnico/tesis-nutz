@@ -39,7 +39,7 @@ class Recinto:
                 return (n - i) * '0' + str(x)
 
     def __init__(self, ind_camera1, ind_camera2, open, close,stop,go,lcd_line,thNut, model,size,bad,good):
-        #print(model)
+        print(model)
         self.bad = bad
         self.good = good
         self.size = size
@@ -126,7 +126,7 @@ class Recinto:
                 self.camera2.read()
 
     def classify_nut(self):
-        #print(self.model)
+        print(self.model)
         if self.stop_motor:
             self.stop()
         self.clear_buffer()
