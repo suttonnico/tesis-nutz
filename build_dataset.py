@@ -22,8 +22,7 @@ my_cnn = cnn.cnn(img_width=W, img_height=H)
 my_cnn.set_weights(weights)
 
 
-
-lcd.lcd_init()
+#lcd.lcd_init()
 
 
 
