@@ -90,6 +90,12 @@ class Recinto:
         trash, self.empty1 = cv2.threshold(empty_gray1, th, 255, cv2.THRESH_BINARY)
         empty_gray2 = cv2.cvtColor(empty2, cv2.COLOR_BGR2GRAY)
         trash, self.empty2 = cv2.threshold(empty_gray2, th, 255, cv2.THRESH_BINARY)
+        #TESTTTTTT
+        s1, img1 = self.camera1.read()
+        s2, img2 = self.camera2.read()
+        img = np.concatenate((img1, img2), axis=1)
+        img = cv2.resize(img, (4 * self.size, 2 * self.size))
+        pred = model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
 
     def take_photos(self):
         th = 140
@@ -125,7 +131,7 @@ class Recinto:
         s2, img2 = self.camera2.read()
         img = np.concatenate((img1, img2), axis=1)
         img = cv2.resize(img, (4 * self.size, 2 * self.size))
-        pred = self.model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
+        pred = model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
         if pred == 1:
             print("BAD :(")
             self.bad()
