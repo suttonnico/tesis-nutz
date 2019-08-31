@@ -39,6 +39,7 @@ class Recinto:
                 return (n - i) * '0' + str(x)
 
     def __init__(self, ind_camera1, ind_camera2, open, close,stop,go,lcd_line,thNut, model,size,bad,good):
+        print(model)
         self.bad = bad
         self.good = good
         self.size = size
@@ -96,6 +97,7 @@ class Recinto:
         img = np.concatenate((img1, img2), axis=1)
         img = cv2.resize(img, (4 * self.size, 2 * self.size))
         pred = model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
+        print("Prediccion"+str(pred))
 
     def take_photos(self):
         th = 140
@@ -124,6 +126,7 @@ class Recinto:
                 self.camera2.read()
 
     def classify_nut(self):
+        print(self.model)
         if self.stop_motor:
             self.stop()
         self.clear_buffer()
@@ -131,7 +134,7 @@ class Recinto:
         s2, img2 = self.camera2.read()
         img = np.concatenate((img1, img2), axis=1)
         img = cv2.resize(img, (4 * self.size, 2 * self.size))
-        pred = model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
+        pred = self.model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
         if pred == 1:
             print("BAD :(")
             self.bad()
