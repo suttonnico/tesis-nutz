@@ -146,7 +146,9 @@ class Recinto:
         pred = self.model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
         if pred == 1:
             print("BAD :(")
+            self.small()
             self.bad()
+
         else:
             print("GOOD :)")
             size1 = size_classification.findRadius(img1,self.empty1_org)
