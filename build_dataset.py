@@ -85,11 +85,11 @@ thread1 = threading.Thread(target = recinto1.take_photos())
 thread2 = threading.Thread(target = recinto2.take_photos())
 print("LISTO")
 while stop == False:
-    if GPIO.input(pin_arriba):
+    if GPIO.input(pin_arriba) == GPIO.LOW:
         recinto1.up_calibre()
         recinto2.up_calibre()
         print("CALIBRE:"+str(recinto1.calibre))
-    if GPIO.input(pin_abajo):
+    if GPIO.input(pin_abajo)== GPIO.LOW:
         recinto1.dw_calibre()
         recinto2.up_calibre()
         print("CALIBRE:"+str(recinto1.calibre))
