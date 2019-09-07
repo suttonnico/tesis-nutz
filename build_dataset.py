@@ -28,6 +28,8 @@ my_cnn.set_weights(weights)
 
 pin_parada = 40
 pin_arranque = 37
+pin_arriba = 36
+pin_abajo = 33
 
 GPIO.setwarnings(False) # Ignore warning for now
 GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
@@ -69,8 +71,8 @@ def choose_cameras(cams, empty_bw, bw_threshold):
     return out
     #return out
 
-recinto1 = Recinto(2,4,i2c.openA1,i2c.closeA1,i2c.stop,i2c.go,lcd.LCD_LINE_1,1800000,my_cnn,size,i2c.openA2,i2c.closeA2)
-recinto2 = Recinto(0,6,i2c.openB1,i2c.closeB1,i2c.stop,i2c.go,lcd.LCD_LINE_2,1500000,my_cnn,size,i2c.openB2,i2c.closeB2)
+recinto1 = Recinto(2,4,i2c.openA1,i2c.closeA1,i2c.stop,i2c.go,lcd.LCD_LINE_1,1800000,my_cnn,size,i2c.openA2,i2c.closeA2,i2c.leftSmall,i2c.leftBig)
+recinto2 = Recinto(0,6,i2c.openB1,i2c.closeB1,i2c.stop,i2c.go,lcd.LCD_LINE_2,1500000,my_cnn,size,i2c.openB2,i2c.closeB2,i2c.rightSmall,i2c.rightBig)
 
 #flag  = False
 stop = False
@@ -83,6 +85,14 @@ thread1 = threading.Thread(target = recinto1.take_photos())
 thread2 = threading.Thread(target = recinto2.take_photos())
 print("LISTO")
 while stop == False:
+    if GPIO.input(pin_arriba):
+        recinto1.up_calibre()
+        recinto2.up_calibre()
+        print("CALIBRE:"+str(recinto1.calibre))
+    if GPIO.input(pin_abajo):
+        recinto1.dw_calibre()
+        recinto2.up_calibre()
+        print("CALIBRE:"+str(recinto1.calibre))
     if GPIO.input(pin_parada) == GPIO.LOW:
         i2c.stop()
         i2c.openB1()
