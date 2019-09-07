@@ -1,7 +1,7 @@
 import i2c_module as i2c
 import time
 
-sleep_time = 0.2
+sleep_time = 2
 if __name__ == "__main__":
     i2c.go()
     time.sleep(sleep_time)
