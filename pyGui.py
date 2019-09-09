@@ -16,9 +16,15 @@ import fileLibrary
 
 class Example(wx.Frame):
     Data = fileLibrary.nueces_data()
-    offsetX = 0                                     #offset en X
-    offsetY = 5                                     #Offset entre titulo y oración
+    winsize = 0
+    xsize = 100
+    ysize = 0
+    center = [0, 0]
+    offsetX = 300                                     #offset en X
+    offsetY = 150                                     #Offset entre titulo y oración
     offsetYT = 10                                   #Offset entre titulos
+    offsetTitleY = 50
+    offsetValue = 500
 
     Buenas = 0
     Malas = 0
@@ -42,53 +48,77 @@ class Example(wx.Frame):
 
     def InitUI(self):
 
+        """Set windows sizes"""
+        self.Maximize()
+        self.SetBackgroundColour('#3f5049')
+        self.winsize = self.GetSize()
+        self.xsize = self.winsize[0]
+        self.ysize = self.winsize[1]
+        self.center[0] = self.winsize[0]/2
+        self.center[1] = self.winsize[1]/2
+
         """Titulo"""
-        font = wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.BOLD)
-        heading = wx.StaticText(self, label='Clasificación de Nueces', pos=(25, 15), size=(200, -1))
+        font = wx.Font(20, wx.DEFAULT, wx.NORMAL, wx.BOLD)
+        heading = wx.StaticText(self, label='Clasificación de Nueces', pos=(self.center[0] - self.offsetX + 100, self.center[1] - self.offsetY - self.offsetTitleY), size=(200, -1))
         heading.SetFont(font)
 
-        wx.StaticLine(self, pos=(25, 35), size=(190, 1))
+        font2 = wx.Font(16, wx.DEFAULT, wx.NORMAL, wx.NORMAL)
 
-        wx.StaticLine(self, pos=(20 + self.offsetX, 38 + self.offsetY), size=(400, 2))
-        wx.StaticText(self, label='Diámetro umbral de la nuez', pos=(25 + self.offsetX, 40 + self.offsetY))
-        wx.StaticText(self, label=self.Umbral, pos=(350 + self.offsetX, 40 + self.offsetY))
-        wx.StaticLine(self, pos=(20 + self.offsetX, 56 + self.offsetY), size=(400, 2))
+        wx.StaticLine(self, pos=(self.center[0] - self.offsetX + 100, self.center[1] - self.offsetY - self.offsetTitleY + 40), size=(heading.GetSize()[0], 1))
 
-        wx.StaticLine(self, pos=(420 + self.offsetX, 38 + self.offsetY), size=(2, 20))
-        wx.StaticLine(self, pos=(20 + self.offsetX, 38 + self.offsetY), size=(2, 20))
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 17), size=(600, 2))
+        text1 = wx.StaticText(self, label='Diámetro umbral de la nuez', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 20))
+        text2 = wx.StaticText(self, label=self.Umbral, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 20))
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 45), size=(600, 2))
+
+        text1.SetFont(font2)
+        text2.SetFont(font2)
+
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX + 598, self.center[1] - self.offsetY + self.offsetYT + 17), size=(2, 28))
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 17), size=(2, 28))
 
         """Subtitulo Nueces en Buen estado"""
-        font2 = wx.Font(10, wx.DEFAULT, wx.NORMAL, wx.BOLD)
-        subheading1 = wx.StaticText(self, label='Nueces en Buen estado', pos=(25 + self.offsetX, 60 + self.offsetYT), size=(200, -1))
-        subheading1.SetFont(font2)
+        font3 = wx.Font(18, wx.DEFAULT, wx.NORMAL, wx.BOLD)
+        subheading1 = wx.StaticText(self, label='Nueces en Buen estado', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY  + self.offsetYT + 55), size=(200, -1))
+        subheading1.SetFont(font3)
 
-        wx.StaticLine(self, pos=(20 + self.offsetX, 77 + self.offsetY + self.offsetYT), size=(400, 2))
-        wx.StaticText(self, label='Cantidad total de nueces en buen estado', pos=(25 + self.offsetX, 80+ self.offsetY + self.offsetYT))
-        wx.StaticText(self, label=self.Buenas, pos=(350 + self.offsetX, 80 + self.offsetY + self.offsetYT))
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 87), size=(600, 2))
+        text3 = wx.StaticText(self, label='Cantidad total de nueces en buen estado', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY  + self.offsetYT + 90))
+        text4 = wx.StaticText(self, label=self.Buenas, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY  + self.offsetYT + 90))
 
-        wx.StaticLine(self, pos=(20 + self.offsetX, 97 + self.offsetY + self.offsetYT), size=(400, 2))
-        wx.StaticText(self, label='Cantidad de nueces de diámetro mayor al umbral', pos=(25 + self.offsetX, 100 + self.offsetY + self.offsetYT))
-        wx.StaticText(self, label=self.Buenas_grandes, pos=(350 + self.offsetX, 100 + self.offsetY + self.offsetYT))
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 116), size=(600, 2))
+        text5 = wx.StaticText(self, label='Cantidad de nueces de diámetro mayor al umbral', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY  + self.offsetYT + 120))
+        text6 = wx.StaticText(self, label=self.Buenas_grandes, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 120))
 
-        wx.StaticLine(self, pos=(20 + self.offsetX, 117 + self.offsetY + self.offsetYT), size=(400, 2))
-        wx.StaticText(self, label='Cantidad de nueces de diámetro menor al umbral', pos=(25 + self.offsetX, 120 + self.offsetY + self.offsetYT))
-        wx.StaticText(self, label=self.Buenas_chicas, pos=(350 + self.offsetX, 120 + self.offsetY + self.offsetYT))
-        wx.StaticLine(self, pos=(20 + self.offsetX, 137 + self.offsetY + self.offsetYT), size=(400, 2))
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 148), size=(600, 2))
+        text7 = wx.StaticText(self, label='Cantidad de nueces de diámetro menor al umbral', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 150))
+        text8 = wx.StaticText(self, label=self.Buenas_chicas, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 150))
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 177), size=(601, 2))
 
-        wx.StaticLine(self, pos=(420 + self.offsetX, 77 + self.offsetY + self.offsetYT), size=(2, 62))
-        wx.StaticLine(self, pos=(20 + self.offsetX, 77 + self.offsetY + self.offsetYT), size=(2, 62))
+        text3.SetFont(font2)
+        text4.SetFont(font2)
+        text5.SetFont(font2)
+        text6.SetFont(font2)
+        text7.SetFont(font2)
+        text8.SetFont(font2)
+
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX + 600, self.center[1] - self.offsetY + self.offsetYT + 87), size=(2, 90))
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 87), size=(2, 90))
 
         """Subtitulo Nueces en mal estado"""
-        subheading2 = wx.StaticText(self, label='Nueces en mal estado', pos=(25 + self.offsetX, 150 + self.offsetY + self.offsetYT))
-        subheading2.SetFont(font2)
+        subheading2 = wx.StaticText(self, label='Nueces en mal estado', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 190))
+        subheading2.SetFont(font3)
 
-        wx.StaticLine(self, pos=(20 + self.offsetX, 172 + self.offsetY + self.offsetYT), size=(400, 2))
-        wx.StaticText(self, label='Cantidad de nueces en mal estado', pos=(25 + self.offsetX, 175 + self.offsetY + self.offsetYT))
-        wx.StaticText(self, label=self.Malas, pos=(350 + self.offsetX, 175 + self.offsetY + self.offsetYT))
-        wx.StaticLine(self, pos=(20 + self.offsetX, 190 + self.offsetY + self.offsetYT), size=(400, 2))
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 223), size=(600, 2))
+        text9 = wx.StaticText(self, label='Cantidad de nueces en mal estado', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 225))
+        text10 = wx.StaticText(self, label=self.Malas, pos=(self.center[0] - self.offsetX + self.offsetValue,self.center[1] - self.offsetY + self.offsetYT + 225))
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 253), size=(600, 2))
 
-        wx.StaticLine(self, pos=(420 + self.offsetX, 172 + self.offsetY + self.offsetYT), size=(2, 20))
-        wx.StaticLine(self, pos=(20 + self.offsetX, 172 + self.offsetY + self.offsetYT), size=(2, 20))
+        text9.SetFont(font2)
+        text10.SetFont(font2)
+
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX + 600, self.center[1] - self.offsetY + self.offsetYT + 223), size=(2, 32))
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 223), size=(2, 32))
 
 
         #tsum = wx.StaticText(self, label='164 336 000', pos=(240, 280))
@@ -97,13 +127,14 @@ class Example(wx.Frame):
         #tsum.SetFont(sum_font)
 
 
-        btn = wx.Button(self, label='Close', pos=(140, 220))
+        btn = wx.Button(self, label='Close', pos=(self.center[0], self.center[1] - self.offsetY  + self.offsetYT  + 300))
 
         btn.Bind(wx.EVT_BUTTON, self.OnClose)
 
-        self.SetBackgroundColour('#3f5049')
+        #self.SetBackgroundColour('#3f5049')
         #self.SetBackgroundStyle()
-        self.SetSize((450, 300))
+        #self.SetSize((450, 300))
+        #self.Maximize()
         self.SetTitle('UI')
         self.Centre()
 
@@ -136,8 +167,8 @@ class Example(wx.Frame):
             self.Malas = self.Data.get_clasif_malas_value()
             wx.StaticText(self, label="                ", pos=(350 + self.offsetX, 175 + self.offsetY + self.offsetYT))
             wx.StaticText(self, label=self.Data.get_clasif_malas_value(), pos=(350 + self.offsetX, 175 + self.offsetY + self.offsetYT))
-        else:
-            print("No changes")
+        #else:
+            #print("No changes")
 
     def clean_values(self):
        #wx.CLEAR()
