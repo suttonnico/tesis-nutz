@@ -10,6 +10,7 @@ import numpy as np
 import size_classification
 
 class Recinto:
+    calibre= 3
     empty1_org = {}
     empty2_org = {}
     model = {}
@@ -38,8 +39,10 @@ class Recinto:
             if x < 10 ** i:
                 return (n - i) * '0' + str(x)
 
-    def __init__(self, ind_camera1, ind_camera2, open, close,stop,go,lcd_line,thNut, model,size,bad,good):
+    def __init__(self, ind_camera1, ind_camera2, open, close,stop,go,lcd_line,thNut, model,size,bad,good,small,big):
         print(model)
+        self.small = small
+        self.big = big
         self.bad = bad
         self.good = good
         self.size = size
@@ -119,6 +122,12 @@ class Recinto:
             print(diff1.sum())
             self.classify_nut()
 
+    def up_calibre(self):
+        self.calibre += 0.1
+
+    def dw_calibre(self):
+        self.calibre -= 0.1
+
     def clear_buffer(self):
         start = time.time()
         while time.time() - start < self.empty_buffer_time:
@@ -137,7 +146,9 @@ class Recinto:
         pred = self.model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
         if pred == 1:
             print("BAD :(")
+            self.small()
             self.bad()
+
         else:
             print("GOOD :)")
             size1 = size_classification.findRadius(img1,self.empty1_org)
@@ -146,6 +157,10 @@ class Recinto:
             print("pixeles camara 2:"+str(size2))
             diametro = round(size_classification.sizes2rad(size1,size2,120),2)
             print("Diametro: "+str(diametro))
+            if(diametro>=self.calibre):
+                print("grande")
+            else:
+                print("chica")
            # lcd.lcd_string("Calibre: " + str(diametro), 0xD4)
             self.good()
         self.open()

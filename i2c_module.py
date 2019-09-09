@@ -67,11 +67,11 @@ def closeA3():
     bus.write_byte(addr_arduino, ord('w'))
 
 
-def leftBig():
+def leftSmall():
     bus.write_byte(addr_arduino, ord('A'))
 
 
-def leftSmall():
+def leftBig():
     bus.write_byte(addr_arduino, ord('B'))
 
 
@@ -79,11 +79,11 @@ def leftBad():
     bus.write_byte(addr_arduino, ord('C'))
 
 
-def rightBig():
+def rightSmall():
     bus.write_byte(addr_arduino, ord('D'))
 
 
-def rightSmall():
+def rightBig():
     bus.write_byte(addr_arduino, ord('E'))
 
 
