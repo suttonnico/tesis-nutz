@@ -10,6 +10,14 @@ import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 from recinto import Recinto
 from keras.models import load_model
 import threading
+import fileLibrary
+
+display = fileLibrary.nueces_data()
+display.set_clasif_buenas_value(0)
+display.set_clasif_malas_value(0)
+display.set_config_value(3)
+display.set_subclasif_buenas_chicas_value(0)
+display.set_subclasif_buenas_grandes_value(0)
 
 size = 150
 W = 2*size
