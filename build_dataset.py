@@ -96,13 +96,13 @@ while stop == False:
     if GPIO.input(pin_arriba) == GPIO.LOW:
         recinto1.up_calibre()
         recinto2.up_calibre()
-        cal=display.get_config_value()
+        cal=float(display.get_config_value())
         display.set_config_value(cal+0.1)
         print("CALIBRE:"+str(recinto1.calibre))
     if GPIO.input(pin_abajo)== GPIO.LOW:
         recinto1.dw_calibre()
         recinto2.up_calibre()
-        cal = display.get_config_value()
+        cal = float(display.get_config_value())
         if cal > 0:
             display.set_config_value(cal - 0.1)
         print("CALIBRE:"+str(recinto1.calibre))
