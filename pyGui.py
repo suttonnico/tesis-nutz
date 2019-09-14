@@ -32,6 +32,17 @@ class Example(wx.Frame):
     Buenas_grandes = 0
     Umbral = None
 
+    text1 = None
+    value1 = None
+    text2 = None
+    value2 = None
+    text3 = None
+    value3 = None
+    text4 = None
+    value4 = None
+    text5 = None
+    value5 = None
+
     def __init__(self, *args, **kw):
         super(Example, self).__init__(*args, **kw)
 
@@ -67,12 +78,12 @@ class Example(wx.Frame):
         wx.StaticLine(self, pos=(self.center[0] - self.offsetX + 100, self.center[1] - self.offsetY - self.offsetTitleY + 40), size=(heading.GetSize()[0], 1))
 
         wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 17), size=(650, 2))
-        text1 = wx.StaticText(self, label='Diámetro umbral de la nuez', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 20))
-        text2 = wx.StaticText(self, label=self.Umbral, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 20))
+        self.text1 = wx.StaticText(self, label='Diámetro umbral de la nuez', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 20))
+        self.value1 = wx.StaticText(self, label=self.Umbral, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 20))
         wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 45), size=(650, 2))
 
-        text1.SetFont(font2)
-        text2.SetFont(font2)
+        self.text1.SetFont(font2)
+        self.value1.SetFont(font2)
 
         wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX + 646, self.center[1] - self.offsetY + self.offsetYT + 17), size=(3, 28))
         wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 18), size=(3, 28))
@@ -83,26 +94,26 @@ class Example(wx.Frame):
         subheading1.SetFont(font3)
 
         wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 87), size=(650, 2))
-        text3 = wx.StaticText(self, label='Cantidad total de nueces en buen estado', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY  + self.offsetYT + 90))
-        text4 = wx.StaticText(self, label=self.Buenas, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY  + self.offsetYT + 90))
+        self.text2 = wx.StaticText(self, label='Cantidad total de nueces en buen estado', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY  + self.offsetYT + 90))
+        self.value2 = wx.StaticText(self, label=self.Buenas, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY  + self.offsetYT + 90))
 
         wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 116), size=(650, 2))
-        text5 = wx.StaticText(self, label='Cantidad de nueces de diámetro mayor al umbral', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY  + self.offsetYT + 120))
-        text6 = wx.StaticText(self, label=self.Buenas_grandes, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 120))
+        self.text3 = wx.StaticText(self, label='Cantidad de nueces de diámetro mayor al umbral', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY  + self.offsetYT + 120))
+        self.value3 = wx.StaticText(self, label=self.Buenas_grandes, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 120))
 
         wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 148), size=(650, 2))
-        text7 = wx.StaticText(self, label='Cantidad de nueces de diámetro menor al umbral', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 150))
-        text8 = wx.StaticText(self, label=self.Buenas_chicas, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 150))
+        self.text4 = wx.StaticText(self, label='Cantidad de nueces de diámetro menor al umbral', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 150))
+        self.value4 = wx.StaticText(self, label=self.Buenas_chicas, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 150))
         wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 177), size=(651, 2))
 
-        text3.SetFont(font2)
-        text4.SetFont(font2)
-        text5.SetFont(font2)
-        text6.SetFont(font2)
-        text7.SetFont(font2)
-        text8.SetFont(font2)
+        self.text2.SetFont(font2)
+        self.value2.SetFont(font2)
+        self.text3.SetFont(font2)
+        self.value3.SetFont(font2)
+        self.text4.SetFont(font2)
+        self.value4.SetFont(font2)
 
-        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX + 600, self.center[1] - self.offsetY + self.offsetYT + 87), size=(2, 90))
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX + 650, self.center[1] - self.offsetY + self.offsetYT + 87), size=(2, 90))
         wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 87), size=(2, 90))
 
         """Subtitulo Nueces en mal estado"""
@@ -110,14 +121,14 @@ class Example(wx.Frame):
         subheading2.SetFont(font3)
 
         wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 223), size=(650, 2))
-        text9 = wx.StaticText(self, label='Cantidad de nueces en mal estado', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 225))
-        text10 = wx.StaticText(self, label=self.Malas, pos=(self.center[0] - self.offsetX + self.offsetValue,self.center[1] - self.offsetY + self.offsetYT + 225))
+        self.text5 = wx.StaticText(self, label='Cantidad de nueces en mal estado', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 225))
+        self.value5 = wx.StaticText(self, label=self.Malas, pos=(self.center[0] - self.offsetX + self.offsetValue,self.center[1] - self.offsetY + self.offsetYT + 225))
         wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 253), size=(650, 2))
 
-        text9.SetFont(font2)
-        text10.SetFont(font2)
+        self.text5.SetFont(font2)
+        self.value5.SetFont(font2)
 
-        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX + 600, self.center[1] - self.offsetY + self.offsetYT + 223), size=(2, 32))
+        wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX + 650, self.center[1] - self.offsetY + self.offsetYT + 223), size=(2, 32))
         wx.StaticLine(self, pos=(self.center[0] - 5 - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 223), size=(2, 32))
 
 
@@ -150,34 +161,39 @@ class Example(wx.Frame):
         #self.clean_values()
         if self.Data.get_config_value() != self.Umbral:
             self.Umbral = self.Data.get_config_value()
-            text1 = wx.StaticText(self, label="             ", pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 20))
-            text2 = wx.StaticText(self, label=self.Data.get_config_value(), pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 20))
-            text1.SetFont(font)
-            text2.SetFont(font)
+            self.value1.SetLabel(label=self.Data.get_config_value())
+            #text1 = wx.StaticText(self, label="             ", pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 20))
+            #text2 = wx.StaticText(self, label=self.Data.get_config_value(), pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 20))
+            #text1.SetFont(font)
+            #text2.SetFont(font)
         if self.Data.get_clasif_buenas_value() != self.Buenas:
             self.Buenas = self.Data.get_clasif_buenas_value()
-            text1 = wx.StaticText(self, label="             ", pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY  + self.offsetYT + 90))
-            text2 = wx.StaticText(self, label=self.Data.get_clasif_buenas_value(), pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY  + self.offsetYT + 90))
-            text1.SetFont(font)
-            text2.SetFont(font)
+            self.value2.SetLabel(label=self.Data.get_clasif_buenas_value())
+            #text1 = wx.StaticText(self, label="             ", pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY  + self.offsetYT + 90))
+            #text2 = wx.StaticText(self, label=self.Data.get_clasif_buenas_value(), pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY  + self.offsetYT + 90))
+            #text1.SetFont(font)
+            #text2.SetFont(font)
         if self.Data.get_subclasif_buenas_grandes_value() != self.Buenas_grandes:
             self.Buenas_grandes = self.Data.get_subclasif_buenas_grandes_value()
-            text1 = wx.StaticText(self, label="             ", pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 120))
-            text2 = wx.StaticText(self, label=self.Data.get_subclasif_buenas_grandes_value(), pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 120))
-            text1.SetFont(font)
-            text2.SetFont(font)
+            self.value3.SetLabel( label=self.Data.get_subclasif_buenas_grandes_value())
+            #text1 = wx.StaticText(self, label="             ", pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 120))
+            #text2 = wx.StaticText(self, label=self.Data.get_subclasif_buenas_grandes_value(), pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 120))
+            #text1.SetFont(font)
+            #text2.SetFont(font)
         if self.Data.get_subclasif_buenas_chicas_value() != self.Buenas_chicas:
             self.Buenas_chicas = self.Data.get_subclasif_buenas_chicas_value()
-            text1 = wx.StaticText(self, label="             ", pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 150))
-            text2 = wx.StaticText(self, label=self.Data.get_subclasif_buenas_chicas_value(), pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 150))
-            text1.SetFont(font)
-            text2.SetFont(font)
+            self.value4.SetLabel(label=self.Data.get_subclasif_buenas_chicas_value())
+            #text1 = wx.StaticText(self, label="             ", pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 150))
+            #text2 = wx.StaticText(self, label=self.Data.get_subclasif_buenas_chicas_value(), pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 150))
+            #text1.SetFont(font)
+            #text2.SetFont(font)
         if self.Data.get_clasif_malas_value() != self.Malas:
             self.Malas = self.Data.get_clasif_malas_value()
-            text1 = wx.StaticText(self, label="             ", pos=(self.center[0] - self.offsetX + self.offsetValue,self.center[1] - self.offsetY + self.offsetYT + 225))
-            text2 = wx.StaticText(self, label=self.Data.get_clasif_malas_value(), pos=(self.center[0] - self.offsetX + self.offsetValue,self.center[1] - self.offsetY + self.offsetYT + 225))
-            text1.SetFont(font)
-            text2.SetFont(font)
+            self.value5.SetLabel( label=self.Data.get_clasif_malas_value())
+            #text1 = wx.StaticText(self, label="             ", pos=(self.center[0] - self.offsetX + self.offsetValue,self.center[1] - self.offsetY + self.offsetYT + 225))
+            #text2 = wx.StaticText(self, label=self.Data.get_clasif_malas_value(), pos=(self.center[0] - self.offsetX + self.offsetValue,self.center[1] - self.offsetY + self.offsetYT + 225))
+            #text1.SetFont(font)
+            #text2.SetFont(font)
 
         #else:
             #print("No changes")
