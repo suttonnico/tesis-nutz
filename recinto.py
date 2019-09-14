@@ -148,14 +148,14 @@ class Recinto:
         pred = self.model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
         if pred == 1:
             malas = self.display.get_clasif_malas_value()
-            self.display.set_clasif_malas_value(malas+1)
+            self.display.set_clasif_malas_value(int(malas)+1)
             print("BAD :(")
             self.small()
             self.bad()
 
         else:
             buenas = self.display.get_clasif_buenas_value()
-            self.display.set_clasif_buenas_value(buenas + 1)
+            self.display.set_clasif_buenas_value(int(buenas) + 1)
 
             print("GOOD :)")
             size1 = size_classification.findRadius(img1,self.empty1_org)
@@ -167,11 +167,11 @@ class Recinto:
             if(diametro>=self.calibre):
                 print("grande")
                 grandes = self.display.get_subclasif_buenas_grandes_value()
-                self.display.set_subclasif_buenas_grandes_value(grandes + 1)
+                self.display.set_subclasif_buenas_grandes_value(int(grandes) + 1)
 
             else:
                 chicas = self.display.get_subclasif_buenas_chicas_value()
-                self.display.set_subclasif_buenas_grandes_value(chicas + 1)
+                self.display.set_subclasif_buenas_grandes_value(int(chicas) + 1)
 
                 print("chica")
            # lcd.lcd_string("Calibre: " + str(diametro), 0xD4)
