@@ -172,7 +172,7 @@ class Recinto:
                 buenas = self.display.get_clasif_buenas_value()
                 self.display.set_clasif_buenas_value(int(buenas) + 1)
                 chicas = self.display.get_subclasif_buenas_chicas_value()
-                self.display.set_subclasif_buenas_grandes_value(int(chicas) + 1)
+                self.display.set_subclasif_buenas_chicas_value(int(chicas) + 1)
 
                 print("chica")
            # lcd.lcd_string("Calibre: " + str(diametro), 0xD4)
