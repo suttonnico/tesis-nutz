@@ -96,10 +96,15 @@ while stop == False:
     if GPIO.input(pin_arriba) == GPIO.LOW:
         recinto1.up_calibre()
         recinto2.up_calibre()
+        cal=display.get_config_value()
+        display.set_config_value(cal+0.1)
         print("CALIBRE:"+str(recinto1.calibre))
     if GPIO.input(pin_abajo)== GPIO.LOW:
         recinto1.dw_calibre()
         recinto2.up_calibre()
+        cal = display.get_config_value()
+        if cal > 0:
+            display.set_config_value(cal - 0.1)
         print("CALIBRE:"+str(recinto1.calibre))
     if GPIO.input(pin_parada) == GPIO.LOW:
         i2c.stop()
@@ -113,6 +118,11 @@ while stop == False:
             print("Good bye")
         print("STOP")
     if GPIO.input(pin_arranque) == GPIO.LOW:
+        display.set_clasif_buenas_value(0)
+        display.set_clasif_malas_value(0)
+        display.set_config_value(3)
+        display.set_subclasif_buenas_chicas_value(0)
+        display.set_subclasif_buenas_grandes_value(0)
         i2c.closeB1()
         i2c.closeA1()
         time.sleep(1)
