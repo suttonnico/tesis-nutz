@@ -20,7 +20,7 @@ class Example(wx.Frame):
     xsize = 100
     ysize = 0
     center = [0, 0]
-    offsetX = 350                                    #offset en X
+    offsetX = 360                                   #offset en X
     offsetY = 150                                     #Offset entre titulo y oración
     offsetYT = 10                                   #Offset entre titulos
     offsetTitleY = 50
