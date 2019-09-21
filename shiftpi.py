@@ -131,6 +131,7 @@ def _execute():
 
         GPIO.output(_SER_pin, pin_mode)
         GPIO.output(_SRCLK_pin, GPIO.HIGH)
+        delay(1)
 
     GPIO.output(_RCLK_pin, GPIO.HIGH)
 
