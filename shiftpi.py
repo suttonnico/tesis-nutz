@@ -6,7 +6,7 @@ A library that allows simple access to 74HC595 shift registers on a Raspberry Pi
 import RPi.GPIO as GPIO
 from time import sleep
 
-GPIO.setmode(GPIO.BCM)
+#GPIO.setmode(GPIO.BCM)
 
 version = "0.2"
 version_info = (0, 2)
