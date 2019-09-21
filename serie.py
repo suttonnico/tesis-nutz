@@ -69,14 +69,15 @@ def leftBad():
 
 
 def rightSmall():
-    bus.write_byte(addr_arduino, ord('D'))
-
-
+    closeB3()
+    openB2()
+    openB1()
 def rightBig():
-    bus.write_byte(addr_arduino, ord('E'))
-
+    closeA2()
+    openA1()
 
 def rightBad():
-    bus.write_byte(addr_arduino, ord('F'))
-
+    openA3()
+    openA2()
+    openA1()
 
