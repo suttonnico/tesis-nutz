@@ -17,9 +17,9 @@ HIGH = 1
 LOW  = 0
 
 # Define pins
-_SER_pin   = 17    #pin 14 on the 75HC595
-_RCLK_pin  = 27    #pin 12 on the 75HC595
-_SRCLK_pin = 22   #pin 11 on the 75HC595
+_SER_pin   = 11    #pin 14 on the 75HC595
+_RCLK_pin  = 13    #pin 12 on the 75HC595
+_SRCLK_pin = 15   #pin 11 on the 75HC595
 
 # is used to store states of all pins
 _registers = list()
