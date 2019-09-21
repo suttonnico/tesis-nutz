@@ -24,7 +24,7 @@ W = 2*size
 H = 2*size
 
 
-model = load_model('model_backup.h5')
+model = load_model('model.h5')
 weights = model.get_weights()
 my_cnn = cnn.cnn(img_width=W, img_height=H)
 my_cnn.set_weights(weights)
