@@ -73,11 +73,11 @@ def rightSmall():
     openB2()
     openB1()
 def rightBig():
-    closeA2()
-    openA1()
+    closeB2()
+    openB1()
 
 def rightBad():
-    openA3()
-    openA2()
-    openA1()
+    openB3()
+    openB2()
+    openB1()
 
