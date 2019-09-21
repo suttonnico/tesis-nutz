@@ -1,5 +1,5 @@
 import cv2
-import shiftpi as i2c
+import serie as i2c
 import os
 import glob
 import time
