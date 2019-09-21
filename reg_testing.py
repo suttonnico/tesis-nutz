@@ -31,7 +31,7 @@ my_cnn.set_weights(weights)
 
 
 
-nut_dir_sep = 'data_cinta/data'
+nut_dir_sep = 'data'
 
 pairs = {
     '0': '6',
