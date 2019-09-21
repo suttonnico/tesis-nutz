@@ -31,7 +31,7 @@ my_cnn.set_weights(weights)
 
 
 
-nut_dir_sep = 'data'
+nut_dir_sep = 'data_cinta/data'
 
 pairs = {
     '0': '6',
@@ -43,8 +43,6 @@ new_imgs_files = [f for f in os.listdir(nut_dir_sep)]
 for f in new_imgs_files:
     id = getNutId(f)
     num = getNutNumber(f)
-    print("ID: " + id)
-    print("NUM: " + num)
     if id in pairs:
         pair_id = pairs[id]
         img_org = cv2.imread(os.path.join(nut_dir_sep, f))
@@ -52,5 +50,5 @@ for f in new_imgs_files:
         img = np.concatenate((img_org, img_pair), axis=1)
         img = cv2.resize(img, (4 * size, 2 * size))
         pred = model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
-        print("Prediccion" + str(pred))
+        print(f+" :" + str(pred))
 
