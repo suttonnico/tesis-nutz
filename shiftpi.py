@@ -128,10 +128,10 @@ def _execute():
         GPIO.output(_SRCLK_pin, GPIO.LOW)
 
         pin_mode = _registers[pin]
-        print("PIN"+str(pin)+"= "+str(pin_mode))
+        #print("PIN"+str(pin)+"= "+str(pin_mode))
         GPIO.output(_SER_pin, pin_mode)
         GPIO.output(_SRCLK_pin, GPIO.HIGH)
-        delay(1)
+        #delay(1)
 
     GPIO.output(_SER_pin, 0)
     GPIO.output(_RCLK_pin, GPIO.HIGH)
