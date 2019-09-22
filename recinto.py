@@ -34,7 +34,7 @@ class Recinto:
     thNut = 3000000
     empty_buffer_time = 0.4
     open_sleep_time = 0.2
-    stop_motor = True
+    stop_motor = False
 
     def zero_pad(self,x, n):
         for i in range(1, 5):
@@ -150,7 +150,6 @@ class Recinto:
             malas = self.display.get_clasif_malas_value()
             self.display.set_clasif_malas_value(int(malas)+1)
             print("BAD :(")
-            self.small()
             self.bad()
 
         else:
