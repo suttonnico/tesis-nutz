@@ -79,8 +79,8 @@ def choose_cameras(cams, empty_bw, bw_threshold):
     return out
     #return out
 
-recinto1 = Recinto(2,4,i2c.openA1,i2c.closeA1,i2c.stop,i2c.go,lcd.LCD_LINE_1,1700000,my_cnn,size,i2c.leftBad,i2c.closeA1,i2c.leftSmall,i2c.leftBig)
-recinto2 = Recinto(0,6,i2c.openB1,i2c.closeB1,i2c.stop,i2c.go,lcd.LCD_LINE_2,1500000,my_cnn,size,i2c.rightBad,i2c.closeB1,i2c.rightSmall,i2c.rightBig)
+recinto1 = Recinto(2,4,i2c.openA1,i2c.closeA1,i2c.stop,i2c.go,lcd.LCD_LINE_1,1700000,my_cnn,size,i2c.leftBad,i2c.closeA1,i2c.rightSmall,i2c.rightBig)
+recinto2 = Recinto(0,6,i2c.openB1,i2c.closeB1,i2c.stop,i2c.go,lcd.LCD_LINE_2,1500000,my_cnn,size,i2c.rightBad,i2c.closeB1,i2c.leftSmall,i2c.leftBig)
 
 #flag  = False
 stop = False
