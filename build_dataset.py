@@ -80,9 +80,9 @@ def choose_cameras(cams, empty_bw, bw_threshold):
 
 
 recinto1 = Recinto(2, 4, open=i2c.openA1, close=i2c.closeA1, stop=i2c.stop, go=i2c.go, thNut=1700000, model=my_cnn,
-                   size=size, bad=i2c.leftBad, small=i2c.rightSmall, big=i2c.rightBig)
+                   size=size, bad=i2c.ABad, small=i2c.ASmall, big=i2c.ABig)
 recinto2 = Recinto(0, 6, open=i2c.openB1, close=i2c.closeB1, stop=i2c.stop, go=i2c.go, thNut=1500000, model=my_cnn,
-                   size=size, bad=i2c.rightBad, small=i2c.leftSmall, big=i2c.leftBig)
+                   size=size, bad=i2c.BBad, small=i2c.BSmall, big=i2c.BBig)
 
 #flag  = False
 stop = False

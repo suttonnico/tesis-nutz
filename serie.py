@@ -52,31 +52,31 @@ def closeB3():
 def closeA3():
     shiftpi.digitalWrite(3, shiftpi.LOW)
 
-def leftSmall():
+def ASmall():
     closeA3()
     openA2()
     openA1()
 
 
-def leftBig():
+def ABig():
     closeA2()
     openA1()
 
-def leftBad():
+def ABad():
     openA3()
     openA2()
     openA1()
 
 
-def rightSmall():
+def BSmall():
     closeB3()
     openB2()
     openB1()
-def rightBig():
+def BBig():
     closeB2()
     openB1()
 
-def rightBad():
+def BBad():
     openB3()
     openB2()
     openB1()
