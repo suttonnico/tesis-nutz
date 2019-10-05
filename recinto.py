@@ -41,12 +41,11 @@ class Recinto:
             if x < 10 ** i:
                 return (n - i) * '0' + str(x)
 
-    def __init__(self, ind_camera1, ind_camera2, open, close,stop,go,thNut, model,size,bad,good,small,big):
+    def __init__(self, ind_camera1, ind_camera2, open, close,stop,go,thNut, model,size,bad,small,big):
         print(model)
         self.small = small
         self.big = big
         self.bad = bad
-        self.good = good
         self.size = size
         self.model = model
         self.thNut = thNut
