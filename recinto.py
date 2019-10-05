@@ -142,6 +142,7 @@ class Recinto:
 
     def classify_nut(self):
         print(self.model)
+        start=time.time()
         if self.stop_motor:
             self.stop()
         self.clear_buffer()
@@ -190,6 +191,6 @@ class Recinto:
             self.go()
         self.counter += 1
       #  lcd.lcd_string("Nueces IZQ: " + str(self.counter), self.lcd_line)
-        print('END thread')
-
+        print("Tiempo de procesamiento total " +str(time.time()-start))
+        print("Tiempo de calculo " +str(time.time()-start-2*self.empty_buffer_time*2-self.open_sleep_time))
 
