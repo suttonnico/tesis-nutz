@@ -34,7 +34,7 @@ class Recinto:
     thNut = 3000000
     empty_buffer_time = 0.4
     open_sleep_time = 0.2
-    stop_motor = True
+    stop_motor = False
 
     def zero_pad(self,x, n):
         for i in range(1, 5):
@@ -190,5 +190,5 @@ class Recinto:
         self.counter += 1
       #  lcd.lcd_string("Nueces IZQ: " + str(self.counter), self.lcd_line)
         print("Tiempo de procesamiento total " +str(time.time()-start))
-        print("Tiempo de calculo " +str(time.time()-start-2*self.empty_buffer_time*2-self.open_sleep_time))
+        print("Tiempo de calculo " +str(time.time()-start-2*self.empty_buffer_time-self.open_sleep_time))
 
