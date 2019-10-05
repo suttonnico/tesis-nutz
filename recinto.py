@@ -32,7 +32,7 @@ class Recinto:
     bad = {}
     counter = 0
     thNut = 3000000
-    empty_buffer_time = -1
+    empty_buffer_time = 0.4
     open_sleep_time = 0.2
     stop_motor = False
 
