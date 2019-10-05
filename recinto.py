@@ -33,6 +33,7 @@ class Recinto:
     counter = 0
     thNut = 3000000
     empty_buffer_time = 0.4
+    empty_buffer_time2 = 0.1
     open_sleep_time = 0.2
     stop_motor = False
 
@@ -135,6 +136,12 @@ class Recinto:
     def clear_buffer(self):
         start = time.time()
         while time.time() - start < self.empty_buffer_time:
+                self.camera1.read()
+                self.camera2.read()
+
+    def clear_buffer2(self):
+        start = time.time()
+        while time.time() - start < self.empty_buffer_time2:
                 self.camera1.read()
                 self.camera2.read()
 
