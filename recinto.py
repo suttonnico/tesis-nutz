@@ -41,7 +41,7 @@ class Recinto:
             if x < 10 ** i:
                 return (n - i) * '0' + str(x)
 
-    def __init__(self, ind_camera1, ind_camera2, open, close,stop,go,lcd_line,thNut, model,size,bad,good,small,big):
+    def __init__(self, ind_camera1, ind_camera2, open, close,stop,go,thNut, model,size,bad,good,small,big):
         print(model)
         self.small = small
         self.big = big
@@ -50,7 +50,6 @@ class Recinto:
         self.size = size
         self.model = model
         self.thNut = thNut
-        self.lcd_line = lcd_line
         self.counter = 0
         self.ind_camera1 = ind_camera1
         self.ind_camera2 = ind_camera2
@@ -171,17 +170,17 @@ class Recinto:
                 self.display.set_clasif_buenas_value(int(buenas) + 1)
                 grandes = self.display.get_subclasif_buenas_grandes_value()
                 self.display.set_subclasif_buenas_grandes_value(int(grandes) + 1)
-
+                self.big()
             else:
                 buenas = self.display.get_clasif_buenas_value()
                 self.display.set_clasif_buenas_value(int(buenas) + 1)
                 chicas = self.display.get_subclasif_buenas_chicas_value()
                 self.display.set_subclasif_buenas_chicas_value(int(chicas) + 1)
-
+                self.small()
                 print("chica")
            # lcd.lcd_string("Calibre: " + str(diametro), 0xD4)
-            self.good()
-        self.open()
+            #self.good()
+        #self.open()
         cv2.imwrite('data/nuez'+str(self.ind_camera1)+'_' + self.zero_pad(self.counter, 6) + '.png', img1)
         cv2.imwrite('data/nuez'+str(self.ind_camera2)+'_' + self.zero_pad(self.counter, 6) + '.png', img2)
         time.sleep(self.open_sleep_time)
