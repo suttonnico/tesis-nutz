@@ -32,7 +32,7 @@ class Recinto:
     bad = {}
     counter = 0
     thNut = 3000000
-    empty_buffer_time = 0.4
+    empty_buffer_time = -1
     open_sleep_time = 0.2
     stop_motor = False
 
@@ -58,9 +58,11 @@ class Recinto:
             self.camera1 = cv2.VideoCapture(ind_camera1)
             self.camera1.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
             self.camera1.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
+            self.camera1.set(cv2.CAP_PROP_BUFFERSIZE,0)
             self.camera2 = cv2.VideoCapture(ind_camera2)
             self.camera2.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
             self.camera2.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
+            self.camera2.set(cv2.CAP_PROP_BUFFERSIZE, 0)
         except:
             print('camera error, please reboot')
             exit(666)
