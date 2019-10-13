@@ -35,7 +35,7 @@ class Recinto:
     empty_buffer_time = 0.4
     empty_buffer_time2 = 0.1
     open_sleep_time = 0.2
-    stop_motor = False
+    stop_motor = True
 
     def zero_pad(self,x, n):
         for i in range(1, 5):
