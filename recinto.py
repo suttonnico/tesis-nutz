@@ -103,7 +103,7 @@ class Recinto:
         #TESTTTTTT
         s1, img1 = self.camera1.read()
         s2, img2 = self.camera2.read()
-        pred = model.predict(img1.reshape([-1, 300, 600, 3]),img2.reshape([-1, 300, 600, 3]))
+        pred = model.predict(img1.reshape([-1, 120, 160, 3]),img2.reshape([-1,120, 160, 3]))
         print("Prediccion"+str(pred))
 
     def take_photos(self):
