@@ -40,8 +40,8 @@ weights = load_model('model_sep_4.h5').get_weights()
 my_cnn_4 = cnn.cnn_sep(img_width=W, img_height=H)
 my_cnn_4.set_weights(weights)
 
-predictor_0_6 = predictor(my_cnn_0, my_cnn_6)
-predictor_2_4 = predictor(my_cnn_2, my_cnn_4)
+predictor_0_6 = predictor.predictor(my_cnn_0, my_cnn_6)
+predictor_2_4 = predictor.predictor(my_cnn_2, my_cnn_4)
 #lcd.lcd_init()
 
 
