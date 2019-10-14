@@ -4,6 +4,13 @@ from keras.models import load_model
 import os
 import numpy as np
 
+
+import logging
+
+logging.basicConfig(filename='predictions.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+logging.warning('This will get logged to a file')
+
+
 def zero_pad(x,n):
     for i in range(1,5):
         if x < 10 ** i:
@@ -43,6 +50,7 @@ class predictor:
     def predict(self,img1,img2):
         p_1 = self.model_1.predict_proba(img1, 1, 0)
         p_2 = self.model_2.predict_proba(img2, 1, 0)
+        logging.debug("p1: "+str(p_1)+" p2: "+str(p_2))
         if (p_1 + p_2)> 1:
             return 1
         else:
