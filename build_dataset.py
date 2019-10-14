@@ -21,8 +21,8 @@ display.set_subclasif_buenas_chicas_value(0)
 display.set_subclasif_buenas_grandes_value(0)
 
 size = 150
-W = 2*size
-H = 2*size
+W = 160
+H = 120
 
 
 model = load_model('model.h5')
