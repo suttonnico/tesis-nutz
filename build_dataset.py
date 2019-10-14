@@ -11,6 +11,7 @@ from recinto import Recinto
 from keras.models import load_model
 import threading
 import fileLibrary
+import predictor
 
 display = fileLibrary.nueces_data()
 display.set_clasif_buenas_value(0)
@@ -30,6 +31,21 @@ my_cnn = cnn.cnn(img_width=W, img_height=H)
 my_cnn.set_weights(weights)
 
 
+weights = load_model('model_sep_0.h5').get_weights()
+my_cnn_0 = cnn.cnn_sep(img_width=W, img_height=H)
+my_cnn_0.set_weights(weights)
+weights = load_model('model_sep_6.h5').get_weights()
+my_cnn_6 = cnn.cnn_sep(img_width=W, img_height=H)
+my_cnn_6.set_weights(weights)
+weights = load_model('model_sep_2.h5').get_weights()
+my_cnn_2 = cnn.cnn_sep(img_width=W, img_height=H)
+my_cnn_2.set_weights(weights)
+weights = load_model('model_sep_4.h5').get_weights()
+my_cnn_4 = cnn.cnn_sep(img_width=W, img_height=H)
+my_cnn_4.set_weights(weights)
+
+predictor_0_6 = predictor(my_cnn_0, my_cnn_6)
+predictor_2_4 = predictor(my_cnn_2, my_cnn_4)
 #lcd.lcd_init()
 
 
@@ -79,9 +95,9 @@ def choose_cameras(cams, empty_bw, bw_threshold):
     return out
 
 
-recinto1 = Recinto(2, 4, open=i2c.openA1, close=i2c.closeA1, stop=i2c.stop, go=i2c.go, thNut=1700000, model=my_cnn,
+recinto1 = Recinto(2, 4, open=i2c.openA1, close=i2c.closeA1, stop=i2c.stop, go=i2c.go, thNut=1700000, model=predictor_0_6,
                    size=size, bad=i2c.ABad, small=i2c.ASmall, big=i2c.ABig)
-recinto2 = Recinto(0, 6, open=i2c.openB1, close=i2c.closeB1, stop=i2c.stop, go=i2c.go, thNut=1500000, model=my_cnn,
+recinto2 = Recinto(0, 6, open=i2c.openB1, close=i2c.closeB1, stop=i2c.stop, go=i2c.go, thNut=1500000, model=predictor_2_4,
                    size=size, bad=i2c.BBad, small=i2c.BSmall, big=i2c.BBig)
 
 #flag  = False

@@ -36,6 +36,7 @@ class Recinto:
     empty_buffer_time2 = 0.1
     open_sleep_time = 0.2
     stop_motor = True
+    debug = True
 
     def zero_pad(self,x, n):
         for i in range(1, 5):
@@ -102,9 +103,7 @@ class Recinto:
         #TESTTTTTT
         s1, img1 = self.camera1.read()
         s2, img2 = self.camera2.read()
-        img = np.concatenate((img1, img2), axis=1)
-        img = cv2.resize(img, (4 * self.size, 2 * self.size))
-        pred = model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
+        pred = model.predict(img1.reshape([-1, 300, 600, 3]),img2.reshape([-1, 300, 600, 3]))
         print("Prediccion"+str(pred))
 
     def take_photos(self):
@@ -153,14 +152,16 @@ class Recinto:
         self.clear_buffer()
         s1, img1 = self.camera1.read()
         s2, img2 = self.camera2.read()
-        img = np.concatenate((img1, img2), axis=1)
-        img = cv2.resize(img, (4 * self.size, 2 * self.size))
-        pred = self.model.predict_classes(img.reshape([-1, 300, 600, 3]), batch_size=1)
+
+        pred = self.model.predict(img1.reshape([-1, 120, 160, 3]), img2.reshape([-1, 120, 160, 3]))
         if pred == 1:
             malas = self.display.get_clasif_malas_value()
             self.display.set_clasif_malas_value(int(malas)+1)
             print("BAD :(")
-            self.bad()
+            if self.debug:
+                self.small()
+            else:
+                self.bad()
 
         else:
             print("GOOD :)")
@@ -176,7 +177,10 @@ class Recinto:
                 self.display.set_clasif_buenas_value(int(buenas) + 1)
                 grandes = self.display.get_subclasif_buenas_grandes_value()
                 self.display.set_subclasif_buenas_grandes_value(int(grandes) + 1)
-                self.big()
+                if self.debug:
+                    self.small()
+                else:
+                    self.big()
             else:
                 buenas = self.display.get_clasif_buenas_value()
                 self.display.set_clasif_buenas_value(int(buenas) + 1)
