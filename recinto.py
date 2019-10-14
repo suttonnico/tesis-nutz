@@ -159,7 +159,7 @@ class Recinto:
             self.display.set_clasif_malas_value(int(malas)+1)
             print("BAD :(")
             if self.debug:
-                self.small()
+                self.big()
             else:
                 self.bad()
 
@@ -178,7 +178,7 @@ class Recinto:
                 grandes = self.display.get_subclasif_buenas_grandes_value()
                 self.display.set_subclasif_buenas_grandes_value(int(grandes) + 1)
                 if self.debug:
-                    self.small()
+                    self.big()
                 else:
                     self.big()
             else:
@@ -186,7 +186,10 @@ class Recinto:
                 self.display.set_clasif_buenas_value(int(buenas) + 1)
                 chicas = self.display.get_subclasif_buenas_chicas_value()
                 self.display.set_subclasif_buenas_chicas_value(int(chicas) + 1)
-                self.small()
+                if self.debug:
+                    self.big()
+                else:
+                    self.small()
                 print("chica")
            # lcd.lcd_string("Calibre: " + str(diametro), 0xD4)
             #self.good()
