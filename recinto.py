@@ -147,6 +147,7 @@ class Recinto:
     def classify_nut(self):
         print(self.model)
         start=time.time()
+        start_size=0
         if self.stop_motor:
             self.stop()
         self.clear_buffer()
@@ -165,10 +166,9 @@ class Recinto:
 
         else:
             print("GOOD :)")
+            start_size = time.time()
             size1 = size_classification.findRadius(img1,self.empty1_org)
             size2 = size_classification.findRadius(img2, self.empty2_org)
-            print("pixeles camara 1:"+str(size1))
-            print("pixeles camara 2:"+str(size2))
             diametro = round(size_classification.sizes2rad(size1,size2,120),2)
             print("Diametro: "+str(diametro))
             if(diametro>=self.calibre):
@@ -203,6 +203,9 @@ class Recinto:
             self.go()
         self.counter += 1
       #  lcd.lcd_string("Nueces IZQ: " + str(self.counter), self.lcd_line)
+
         print("Tiempo de procesamiento total " +str(time.time()-start))
         print("Tiempo de calculo " +str(time.time()-start-2*self.empty_buffer_time-self.open_sleep_time))
+        if start_size!= 0:
+            print("Tiempo de calculo tamaño: "+str(time.time()-start_size))
 
