@@ -35,8 +35,8 @@ class Recinto:
     empty_buffer_time = 0.4
     empty_buffer_time2 = 0.1
     open_sleep_time = 0.2
-    stop_motor = True
-    debug = True
+    stop_motor = False
+    debug = False
 
     def zero_pad(self,x, n):
         for i in range(1, 5):
@@ -202,7 +202,7 @@ class Recinto:
         cv2.imwrite('data/nuez'+str(self.ind_camera2)+'_' + self.zero_pad(self.counter, 6) + '.png', img2)
         time.sleep(self.open_sleep_time)
         self.close()
-        self.clear_buffer()
+        self.clear_buffer2()
         if self.stop_motor:
             self.go()
         self.counter += 1
