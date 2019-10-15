@@ -129,8 +129,6 @@ class Recinto:
         if self.check_photo():
             if self.check_photo():
                 self.classify_nut()
-            else:
-                print("FALSE 2")
 
     def up_calibre(self):
         self.calibre += 0.1
@@ -204,7 +202,7 @@ class Recinto:
         cv2.imwrite('data/nuez'+str(self.ind_camera2)+'_' + self.zero_pad(self.counter, 6) + '.png', img2)
         time.sleep(self.open_sleep_time)
         self.close()
-        self.clear_buffer2()
+        self.clear_buffer()
         if self.stop_motor:
             self.go()
         self.counter += 1
