@@ -105,8 +105,7 @@ class Recinto:
         s2, img2 = self.camera2.read()
         pred = model.predict(img1.reshape([-1, 120, 160, 3]),img2.reshape([-1,120, 160, 3]))
         print("Prediccion"+str(pred))
-
-    def take_photos(self):
+    def check_photo(self):
         th = 140
         try:
             s, img1 = self.camera1.read()
@@ -122,9 +121,14 @@ class Recinto:
         diff1 = self.empty1 - img_BW1
         diff2 = self.empty2 - img_BW2
         if diff1.sum() > self.thNut or diff2.sum() > self.thNut:
-            print(diff1.sum())
-            print(diff1.sum())
-            self.classify_nut()
+            return True
+        else:
+            return False
+
+    def take_photos(self):
+        if self.check_photo():
+            if self.check_photo():
+                self.classify_nut()
 
     def up_calibre(self):
         self.calibre += 0.1
