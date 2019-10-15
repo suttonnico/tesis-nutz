@@ -129,6 +129,8 @@ class Recinto:
         if self.check_photo():
             if self.check_photo():
                 self.classify_nut()
+            else:
+                print("FALSE 2")
 
     def up_calibre(self):
         self.calibre += 0.1
