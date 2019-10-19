@@ -97,13 +97,16 @@ def findRadius(img, empty):
     vert = np.convolve(vert, np.blackman(M))
     th = np.max(vert)*per
     size = len(vert)-np.argmax(np.flip(vert,axis=0) > th)-np.argmax(vert>th)
-    size_v = size/len(vert)*120
+    size_v = size/len(vert)*120*1.1
     hor = np.sum(diff, axis=0)
     hor = np.convolve(hor, np.blackman(M))
     th = np.max(vert) * per
     size = len(hor) - np.argmax(np.flip(hor, axis=0) > th) - np.argmax(hor > th)
-    size_h = size / len(hor) * 160
+    size_h = size / len(hor) * 160*1.1
     #print("sizev:"+str(size_v)+"    sizeH:"+str(size_h))
+    #plt.figure()
+    #plt.subplot(121)
+    #plt.
     if size_h<size_v:
         return size_h
     else:
