@@ -60,7 +60,7 @@ class Example(wx.Frame):
 
         self.timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.updateInfo, self.timer)
-        self.timer.Start(500)
+        self.timer.Start(100)
         self.InitUI(debug=True)
 
     def InitUI(self, debug=False):
