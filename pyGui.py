@@ -56,6 +56,7 @@ class Example(wx.Frame):
         self.Buenas_chicas = self.Data.get_subclasif_buenas_chicas_value()
         self.Buenas_grandes = self.Data.get_subclasif_buenas_grandes_value()
         self.Umbral = self.Data.get_config_value()
+        self.Diametro = self.Data.get_diametro_actual()
 
         self.timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.updateInfo, self.timer)
@@ -156,6 +157,8 @@ class Example(wx.Frame):
             self.debugText1 = wx.StaticText(self, label='Diametro Actual de Nuez', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 300))
             self.debugValue1 = wx.StaticText(self, label=self.Diametro, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 300))
 
+            self.debugText1.SetFont(font2)
+            self.debugValue1.SetFont(font2)
         #self.SetBackgroundColour('#3f5049')
         #self.SetBackgroundStyle()
         #self.SetSize((450, 300))
@@ -226,7 +229,6 @@ def main():
 
     app = wx.App()
     ex = Example(None)
-    ex.InitUI(debug=True)
     ex.Show()
     app.MainLoop()
 
