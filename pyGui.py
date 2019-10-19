@@ -42,6 +42,11 @@ class Example(wx.Frame):
     value4 = None
     text5 = None
     value5 = None
+    #Debug
+    debugMode = False
+    debugText1 = None
+    debugValue1 = None
+    Diametro = 0
 
     def __init__(self, *args, **kw):
         super(Example, self).__init__(*args, **kw)
@@ -57,7 +62,7 @@ class Example(wx.Frame):
         self.timer.Start(500)
         self.InitUI()
 
-    def InitUI(self):
+    def InitUI(self, debug=False):
 
         """Set windows sizes"""
         self.Maximize()
@@ -67,6 +72,9 @@ class Example(wx.Frame):
         self.ysize = self.winsize[1]
         self.center[0] = self.winsize[0]/2
         self.center[1] = self.winsize[1]/2
+
+        """Debug"""
+        self.debugMode = debug
 
         """Titulo"""
         font = wx.Font(20, wx.DEFAULT, wx.NORMAL, wx.BOLD)
@@ -137,10 +145,16 @@ class Example(wx.Frame):
         #sum_font.SetWeight(wx.BOLD)
         #tsum.SetFont(sum_font)
 
-
+        """
+        BOTON
         btn = wx.Button(self, label='Close', pos=(self.center[0], self.center[1] - self.offsetY  + self.offsetYT  + 300))
 
         btn.Bind(wx.EVT_BUTTON, self.OnClose)
+        """
+        #Debug Mode
+        if (self.debugMode):
+            self.debugText1 = wx.StaticText(self, label='Diametro Actual de Nuez', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 300))
+            self.debugValue11 = wx.StaticText(self, label="55", pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 300))
 
         #self.SetBackgroundColour('#3f5049')
         #self.SetBackgroundStyle()
@@ -194,6 +208,10 @@ class Example(wx.Frame):
             #text2 = wx.StaticText(self, label=self.Data.get_clasif_malas_value(), pos=(self.center[0] - self.offsetX + self.offsetValue,self.center[1] - self.offsetY + self.offsetYT + 225))
             #text1.SetFont(font)
             #text2.SetFont(font)
+
+        if self.debugMode & (self.Data.get_diametro_actual() != self.Diametro):
+            self.Diametro = self.Data.get_diametro_actual()
+            self.debugValue1.SetLabel( label=self.Data.get_diametro_actual())
 
         #else:
             #print("No changes")

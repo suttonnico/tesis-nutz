@@ -12,7 +12,7 @@ import size_classification
 
 class Recinto:
     display = fileLibrary.nueces_data()
-    calibre= 3
+    calibre = 3
     empty1_org = {}
     empty2_org = {}
     model = {}
@@ -174,6 +174,7 @@ class Recinto:
             size1 = size_classification.findRadius(img1,self.empty1_org)
             size2 = size_classification.findRadius(img2, self.empty2_org)
             diametro = round(size_classification.sizes2rad(size1,size2,120),2)
+            self.display.set_diametro_actual(diametro)
             print("Diametro: "+str(diametro))
             if(diametro>=self.calibre):
                 print("grande")

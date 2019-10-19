@@ -8,11 +8,14 @@ class nueces_data():
     clasificacion = None
     subClasificacion = None
 
+    debug = None
+
     def __init__(self):
         self.props.read('Database.properties')
         self.config = self.props['CONFIGURACION']
         self.clasificacion = self.props['CLASIFICACION']
         self.subClasificacion = self.props['SUBCLASIFICACION']
+        self.debug = self.props['DEBUG']
 
     def get_config_value(self):
         return self.config['Umbral']
@@ -49,10 +52,21 @@ class nueces_data():
         self.props.set('SUBCLASIFICACION', 'Nueces_Buenas_Grandes', str(value))
         self.write_property_file()
 
+    """"Debug"""
+    def get_diametro_actual(self):
+        return self.debug['Diametro_Actual']
+
+    def set_diametro_actual(self, value):
+        self.props.set('DEBUG', 'Diametro_Actual', str(value))
+        self.write_property_file()
+
+    """General"""
     def write_property_file(self):
         with open('Database.properties', 'w') as configfile:
             self.props.write(configfile)
+
         #self.props.write('Database.properties')
 
     def read_values(self):
         self.props.read('Database.properties')
+
