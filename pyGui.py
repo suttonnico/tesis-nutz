@@ -154,7 +154,7 @@ class Example(wx.Frame):
         #Debug Mode
         if (self.debugMode):
             self.debugText1 = wx.StaticText(self, label='Diametro Actual de Nuez', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 300))
-            self.debugValue11 = wx.StaticText(self, label=self.Diametro, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 300))
+            self.debugValue1 = wx.StaticText(self, label=self.Diametro, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 300))
 
         #self.SetBackgroundColour('#3f5049')
         #self.SetBackgroundStyle()
@@ -226,6 +226,7 @@ def main():
 
     app = wx.App()
     ex = Example(None)
+    ex.InitUI(debug=True)
     ex.Show()
     app.MainLoop()
 
