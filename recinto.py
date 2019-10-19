@@ -10,6 +10,7 @@ import fileLibrary
 import numpy as np
 import size_classification
 
+
 class Recinto:
     display = fileLibrary.nueces_data()
     calibre = 3

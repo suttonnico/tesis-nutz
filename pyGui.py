@@ -60,7 +60,7 @@ class Example(wx.Frame):
         self.timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.updateInfo, self.timer)
         self.timer.Start(500)
-        self.InitUI()
+        self.InitUI(debug=True)
 
     def InitUI(self, debug=False):
 
@@ -154,7 +154,7 @@ class Example(wx.Frame):
         #Debug Mode
         if (self.debugMode):
             self.debugText1 = wx.StaticText(self, label='Diametro Actual de Nuez', pos=(self.center[0] - self.offsetX, self.center[1] - self.offsetY + self.offsetYT + 300))
-            self.debugValue11 = wx.StaticText(self, label="55", pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 300))
+            self.debugValue11 = wx.StaticText(self, label=self.Diametro, pos=(self.center[0] - self.offsetX + self.offsetValue, self.center[1] - self.offsetY + self.offsetYT + 300))
 
         #self.SetBackgroundColour('#3f5049')
         #self.SetBackgroundStyle()
@@ -209,6 +209,7 @@ class Example(wx.Frame):
             #text1.SetFont(font)
             #text2.SetFont(font)
 
+        """Debug"""
         if self.debugMode & (self.Data.get_diametro_actual() != self.Diametro):
             self.Diametro = self.Data.get_diametro_actual()
             self.debugValue1.SetLabel( label=self.Data.get_diametro_actual())
