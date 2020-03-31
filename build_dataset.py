@@ -97,6 +97,12 @@ recinto2 = Recinto(0, 6, open=i2c.openB1, close=i2c.closeB1, stop=i2c.stop, go=i
                    size=size, bad=i2c.BBad, small=i2c.BSmall, big=i2c.BBig)
 
 #flag  = False
+display.set_clasif_buenas_value(0)
+display.set_clasif_malas_value(0)
+display.set_config_value(3)
+display.set_subclasif_buenas_chicas_value(0)
+display.set_subclasif_buenas_grandes_value(0)
+
 stop = False
 i2c.closeB1()
 i2c.closeA1()
@@ -132,11 +138,6 @@ while stop == False:
             print("Good bye")
         print("STOP")
     if GPIO.input(pin_arranque) == GPIO.LOW:
-        display.set_clasif_buenas_value(0)
-        display.set_clasif_malas_value(0)
-        display.set_config_value(3)
-        display.set_subclasif_buenas_chicas_value(0)
-        display.set_subclasif_buenas_grandes_value(0)
         i2c.closeB1()
         i2c.closeA1()
         time.sleep(1)

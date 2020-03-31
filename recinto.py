@@ -150,7 +150,7 @@ class Recinto:
                 self.camera2.read()
 
     def classify_nut(self):
-        print(self.model)
+       # print(self.model)
         start=time.time()
         start_size=0
         if self.stop_motor:
@@ -163,20 +163,20 @@ class Recinto:
         if pred == 1:
             malas = self.display.get_clasif_malas_value()
             self.display.set_clasif_malas_value(int(malas)+1)
-            print("BAD :(")
+         #   print("BAD :(")
             if self.debug:
                 self.big()
             else:
                 self.bad()
 
         else:
-            print("GOOD :)")
+       #     print("GOOD :)")
             start_size = time.time()
             size1 = size_classification.findRadius(img1,self.empty1_org)
             size2 = size_classification.findRadius(img2, self.empty2_org)
             diametro = round(size_classification.sizes2rad(size1,size2,120),2)
             self.display.set_diametro_actual(diametro)
-            print("Diametro: "+str(diametro))
+        #    print("Diametro: "+str(diametro))
             if(diametro>=self.calibre):
                 print("grande")
                 buenas = self.display.get_clasif_buenas_value()

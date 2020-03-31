@@ -51,7 +51,7 @@ class predictor:
         p_1 = self.model_1.predict_proba(img1, 1, 0)
         p_2 = self.model_2.predict_proba(img2, 1, 0)
         print("p1: "+str(p_1)+" p2: "+str(p_2))
-        logging.debug("p1: "+str(p_1)+" p2: "+str(p_2))
+        #logging.debug("p1: "+str(p_1)+" p2: "+str(p_2))
         if (p_1 + p_2)> 1:
             return 1
         else:
