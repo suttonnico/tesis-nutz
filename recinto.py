@@ -210,8 +210,8 @@ class Recinto:
         self.counter += 1
       #  lcd.lcd_string("Nueces IZQ: " + str(self.counter), self.lcd_line)
 
-        print("Tiempo de procesamiento total " +str(time.time()-start))
-        print("Tiempo de calculo " +str(time.time()-start-2*self.empty_buffer_time-self.open_sleep_time))
-        if start_size!= 0:
-            print("Tiempo de calculo tamaño: "+str(time.time()-start_size))
+       # print("Tiempo de procesamiento total " +str(time.time()-start))
+       # print("Tiempo de calculo " +str(time.time()-start-2*self.empty_buffer_time-self.open_sleep_time))
+       # if start_size!= 0:
+       #     print("Tiempo de calculo tamaño: "+str(time.time()-start_size))
 
